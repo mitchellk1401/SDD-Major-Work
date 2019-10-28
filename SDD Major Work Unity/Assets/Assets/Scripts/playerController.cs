@@ -16,8 +16,12 @@ public class playerController : MonoBehaviour
     {
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
 
-        movePos.x = Input.GetAxisRaw("Horizontal");
-        movePos.y = Input.GetAxisRaw("Vertical");
+        if (look.shiftHeld == false)
+        {
+            movePos.x = Input.GetAxisRaw("Horizontal");
+            movePos.y = Input.GetAxisRaw("Vertical");
+        }
+
     }
 
     private void FixedUpdate()
