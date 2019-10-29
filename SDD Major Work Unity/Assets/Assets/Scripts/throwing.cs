@@ -17,6 +17,7 @@ public class throwing : MonoBehaviour
             launch();
         }
     }
+    
 
     void launch()
     {

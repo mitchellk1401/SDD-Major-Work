@@ -2,14 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Look : MonoBehaviour
+public class look : MonoBehaviour
 {
-    public float cameraMoveSpeed =4f;
+    public float cameraMoveSpeed;
     public Rigidbody2D cameraRb;
     public Rigidbody2D player;
     Vector2 movePos;
     public static bool shiftHeld = false;
 
+    private void Start()
+    {
+        cameraMoveSpeed = 4f;
+    }
     void Update()
     {
         if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
@@ -21,8 +25,7 @@ public class Look : MonoBehaviour
         else
         {
             shiftHeld = false;
-            movePos.x = 0;
-            movePos.y = 0;
+          
         }
 
 
@@ -30,12 +33,14 @@ public class Look : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (shiftHeld == true)
+        if (shiftHeld)
         {
-            cameraRb.AddForce(movePos, 0);
+            cameraRb.MovePosition(cameraRb.position + movePos * cameraMoveSpeed * Time.deltaTime);
         }
         else
         {
+            movePos.x = 0;
+            movePos.y = 0;
             cameraRb.position = player.position;
         }
     }

@@ -16,22 +16,17 @@ public class playerController : MonoBehaviour
     {
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
 
-        if (Look.shiftHeld == false)
+        if (look.shiftHeld == false)
         {
-            print("false");
             movePos.x = Input.GetAxis("Horizontal");
             movePos.y = Input.GetAxis("Vertical");
-        }
-        else
-        {
-            print("True");
         }
 
     }
 
     private void FixedUpdate()
     {
-        if(Look.shiftHeld == false)
+        if(!look.shiftHeld)
         {
             rb.MovePosition(rb.position + movePos * moveSpeed * Time.deltaTime);
         }
