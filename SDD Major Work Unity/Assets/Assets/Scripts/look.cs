@@ -2,40 +2,41 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class look : MonoBehaviour
+public class Look : MonoBehaviour
 {
-    public float cameraMoveSpeed;
-    public Rigidbody2D rb;
+    public float cameraMoveSpeed =4f;
+    public Rigidbody2D cameraRb;
     public Rigidbody2D player;
     Vector2 movePos;
-    public static bool shiftHeld;
+    public static bool shiftHeld = false;
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
         {
             shiftHeld = true;
+            movePos.x = Input.GetAxis("Horizontal");
+            movePos.y = Input.GetAxis("Vertical");
         }
         else
         {
             shiftHeld = false;
+            movePos.x = 0;
+            movePos.y = 0;
         }
-        if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
-        {
-            shiftHeld = true;
-            movePos.x = Input.GetAxisRaw("Horizontal");
-            movePos.y = Input.GetAxisRaw("Vertical");
-        }
-        else
-        {
-            rb.position = player.position;
-        }
+
 
     }
 
     private void FixedUpdate()
     {
-        rb.MovePosition(rb.position + movePos * cameraMoveSpeed * Time.deltaTime);
+        if (shiftHeld == true)
+        {
+            cameraRb.AddForce(movePos, 0);
+        }
+        else
+        {
+            cameraRb.position = player.position;
+        }
     }
 }

@@ -16,18 +16,26 @@ public class playerController : MonoBehaviour
     {
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
 
-        if (look.shiftHeld == false)
+        if (Look.shiftHeld == false)
         {
-            movePos.x = Input.GetAxisRaw("Horizontal");
-            movePos.y = Input.GetAxisRaw("Vertical");
+            print("false");
+            movePos.x = Input.GetAxis("Horizontal");
+            movePos.y = Input.GetAxis("Vertical");
+        }
+        else
+        {
+            print("True");
         }
 
     }
 
     private void FixedUpdate()
     {
-        rb.MovePosition(rb.position + movePos * moveSpeed * Time.deltaTime);
-
+        if(Look.shiftHeld == false)
+        {
+            rb.MovePosition(rb.position + movePos * moveSpeed * Time.deltaTime);
+        }
+        
         Vector2 lookDirection = mousePos - rb.position;
 
         //Calculate the angle from the look directon in radians than convert to degreese, for use on the character.
