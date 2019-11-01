@@ -7,11 +7,18 @@ public class throwing : MonoBehaviour
     public Transform firePoint;
     public GameObject ballPrefab;
 
+    public int ammo;
+    private int maxAmmo =3;
+    public int throwingCooldown;
     public float throwingForce = 20f;
 
-    // Update is called once per frame
+    private void Start()
+    {
+        ammo = maxAmmo;
+    }
     void Update()
     {
+
         if (Input.GetButtonDown("Fire1"))
         {
             launch();
