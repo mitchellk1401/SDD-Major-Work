@@ -18,10 +18,14 @@ public class throwing : MonoBehaviour
     }
     void Update()
     {
-
         if (Input.GetButtonDown("Fire1"))
         {
+            Time.timeScale = 0.3f;
+        }
+        if (Input.GetButtonUp("Fire1"))
+        {
             launch();
+            Time.timeScale = 1f;
         }
     }
     
