@@ -6,6 +6,7 @@ const ACCELERATION = 50
 const MAX_SPEED = 300
 const JUMP_HEIGHT = -350
 var Sprint = 1
+var SlowEnabled = 1
 
 
 var motion = Vector2() 
@@ -13,6 +14,12 @@ var motion = Vector2()
 #use $ to access child objects
 	
 func _physics_process(delta):
+	movement()
+	timeSlow()
+	
+	pass
+	
+func  movement():
 	var friction = false
 	
 	# Sprint Modifier -- "ui_sprint" is a custom input for SHIFT key
@@ -23,13 +30,13 @@ func _physics_process(delta):
 
 	#Motion Controls
 	if Input.is_action_pressed("ui_right"):		
-		motion.x = min(motion.x + ACCELERATION , MAX_SPEED * Sprint)
+		motion.x = min(motion.x + ACCELERATION , MAX_SPEED * Sprint * SlowEnabled)
 		$Sprite.flip_h = false
 		$Sprite.play("Run")
 		
 		
 	elif Input.is_action_pressed("ui_left"):
-		motion.x = max(motion.x - ACCELERATION, -MAX_SPEED * Sprint)
+		motion.x = max(motion.x - ACCELERATION, -MAX_SPEED * Sprint * SlowEnabled)
 		$Sprite.flip_h = true
 		$Sprite.play("Run")
 		
@@ -55,4 +62,15 @@ func _physics_process(delta):
 	motion.y += GRAVITY
 	
 	motion = move_and_slide(motion, FLOOR)
+	pass
+	
+func timeSlow():
+	# Slow the entire game down to half when recieves input
+	# Slow enable allows player to continue to move at full speed
+	if Input.is_action_just_pressed("ui_timeSlow"):
+		Engine.time_scale = 0.5
+		SlowEnabled = 2
+	if Input.is_action_just_released("ui_timeSlow"):
+		Engine.time_scale = 1
+		SlowEnabled =1
 	pass
