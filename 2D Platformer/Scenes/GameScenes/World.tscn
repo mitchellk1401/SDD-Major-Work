@@ -9,7 +9,7 @@
 position = Vector2( 159.341, 128 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( -447.341, 160 )
+position = Vector2( -447.341, 161 )
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource( 2 )

@@ -7,7 +7,6 @@
 [ext_resource path="res://Original Items/icon4.png" type="Texture" id=5]
 [ext_resource path="res://Original Items/icon5.png" type="Texture" id=6]
 
-
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
 "frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ],
@@ -25,7 +24,7 @@ script = ExtResource( 1 )
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
-frame = 4
+frame = 2
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

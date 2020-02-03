@@ -8,7 +8,6 @@ const JUMP_HEIGHT = -350
 var Sprint = 1
 var SlowEnabled = 1
 
-
 var motion = Vector2() 
 
 #use $ to access child objects
@@ -73,4 +72,5 @@ func timeSlow():
 	if Input.is_action_just_released("ui_timeSlow"):
 		Engine.time_scale = 1
 		SlowEnabled =1
+		
 	pass
