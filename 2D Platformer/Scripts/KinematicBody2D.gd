@@ -1,17 +1,20 @@
 extends KinematicBody2D
 
 const FLOOR = Vector2(0, -1)
-const GRAVITY = 10
 const ACCELERATION = 50
 const MAX_SPEED = 300
 const JUMP_HEIGHT = -350
 var Sprint = 1
 var SlowEnabled = 1
+var Gravity = 10
+var jumped = false
+var wallPush = 525
 
 var motion = Vector2() 
 
 #use $ to access child objects
-	
+
+		
 func _physics_process(delta):
 	movement()
 	timeSlow()
@@ -20,6 +23,9 @@ func _physics_process(delta):
 	
 func  movement():
 	var friction = false
+	var touchedWall = false
+	var left = false
+
 	
 	# Sprint Modifier -- "ui_sprint" is a custom input for SHIFT key
 	if Input.is_action_just_pressed("ui_sprint"):
@@ -31,12 +37,14 @@ func  movement():
 	if Input.is_action_pressed("ui_right"):		
 		motion.x = min(motion.x + ACCELERATION , MAX_SPEED * Sprint * SlowEnabled)
 		$Sprite.flip_h = false
+		left = false
 		$Sprite.play("Run")
 		
 		
 	elif Input.is_action_pressed("ui_left"):
 		motion.x = max(motion.x - ACCELERATION, -MAX_SPEED * Sprint * SlowEnabled)
 		$Sprite.flip_h = true
+		left = true
 		$Sprite.play("Run")
 		
 	else:
@@ -44,8 +52,20 @@ func  movement():
 		$Sprite.play("Idle")
 		friction = true
 
+	
+	if is_on_wall():
+		if Input.is_action_just_pressed("ui_up"):
+			motion.y = JUMP_HEIGHT * 0.8
+			if left == true:
+				motion.x = wallPush 
+			else:
+				motion.x = -wallPush
+			jumped = true
+		
+		
 	# Check if player is on floor and play correct motion
 	if is_on_floor():
+		jumped = false
 		if Input.is_action_pressed("ui_up"):
 			motion.y = JUMP_HEIGHT
 		if friction == true:
@@ -57,8 +77,9 @@ func  movement():
 			$Sprite.play("Fall")
 		if friction == true:
 			motion.x = lerp(motion.x, 0, 0.1) #make movement smoother
+			
 	
-	motion.y += GRAVITY
+	motion.y += Gravity
 	
 	motion = move_and_slide(motion, FLOOR)
 	pass
@@ -73,4 +94,10 @@ func timeSlow():
 		Engine.time_scale = 1
 		SlowEnabled =1
 		
+	pass
+
+func testing():
+	print("10 second timer")
+	yield (get_tree().create_timer(10), "timeout")
+	print("timed out") 
 	pass
