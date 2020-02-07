@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 const FLOOR = Vector2(0, -1)
 const ACCELERATION = 50
-const MAX_SPEED = 300
+const MAX_SPEED = 500
 const JUMP_HEIGHT = -350
 var Sprint = 1
 var SlowEnabled = 1
@@ -29,7 +29,7 @@ func  movement():
 	
 	# Sprint Modifier -- "ui_sprint" is a custom input for SHIFT key
 	if Input.is_action_just_pressed("ui_sprint"):
-		Sprint = 1.4
+		Sprint = 1.3
 	if Input.is_action_just_released("ui_sprint"):
 		Sprint = 1
 
@@ -53,13 +53,13 @@ func  movement():
 		friction = true
 
 	
-	if is_on_wall():
+	if is_on_wall() && is_on_floor() == false:
 		if Input.is_action_just_pressed("ui_up"):
-			motion.y = JUMP_HEIGHT * 0.8
+			motion.y = JUMP_HEIGHT  *1.2
 			if left == true:
-				motion.x = wallPush 
+				motion.x = wallPush *0.7
 			else:
-				motion.x = -wallPush
+				motion.x = -wallPush * 0.7
 			jumped = true
 		
 		
