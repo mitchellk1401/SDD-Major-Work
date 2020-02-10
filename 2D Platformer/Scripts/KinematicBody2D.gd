@@ -1,20 +1,18 @@
 extends KinematicBody2D
 
 const FLOOR = Vector2(0, -1)
-const ACCELERATION = 50
-const MAX_SPEED = 500
+const ACCELERATION = 30
+const MAX_SPEED = 450
 const JUMP_HEIGHT = -350
 var Sprint = 1
 var SlowEnabled = 1 # Allows the slowdown effect to not impact the players basic movement
 var Gravity = 10
 var jumped = false
 var wallPush = 525
-
 var motion = Vector2() 
 
 #use $ to access child objects
 
-		
 func _physics_process(delta):
 	movement()
 	timeSlow()
@@ -25,7 +23,8 @@ func  movement():
 	var friction = false
 	var touchedWall = false
 	var left = false
-
+	
+	print(abs(motion.y))
 	
 	# Sprint Modifier -- "ui_sprint" is a custom input for SHIFT key
 	if Input.is_action_just_pressed("ui_sprint"):
@@ -61,15 +60,18 @@ func  movement():
 			motion.x = lerp(motion.x, 0, 0.9) #make movement smoother
 			
 	#Wall Jumping
-	elif is_on_wall() && is_on_floor() == false && motion.y > motion.y * 0.8:
-		motion.y = motion.y * 0.8
+	elif is_on_wall() && is_on_floor() == false :
 		$Sprite.play("WallHold")
+		#Slows the effect of gravity on the player showing the player sliding down the wall
+		motion.y = motion.y * 0.9
 		if Input.is_action_just_pressed("ui_up"):
 			motion.y = JUMP_HEIGHT
 			if left == true:
-				motion.x = wallPush *0.9
+				motion.x = wallPush * 0.8			
 			else:
-				motion.x = -wallPush * 0.9
+				motion.x = -wallPush * 0.8
+			# Add a delay on the next input after the player jumps off the wall alowing for the jump to carry its initial velocity
+			yield (get_tree().create_timer(1.5), "timeout")			
 			jumped = true
 	else:
 		if motion.y > 0:
@@ -102,3 +104,4 @@ func testing():
 	yield (get_tree().create_timer(10), "timeout")
 	print("timed out") 
 	pass
+	
