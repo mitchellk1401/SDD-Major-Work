@@ -5,7 +5,7 @@ const ACCELERATION = 50
 const MAX_SPEED = 500
 const JUMP_HEIGHT = -350
 var Sprint = 1
-var SlowEnabled = 1
+var SlowEnabled = 1 # Allows the slowdown effect to not impact the players basic movement
 var Gravity = 10
 var jumped = false
 var wallPush = 525
@@ -51,17 +51,6 @@ func  movement():
 		motion.x = 0	
 		$Sprite.play("Idle")
 		friction = true
-
-	
-	if is_on_wall() && is_on_floor() == false:
-		if Input.is_action_just_pressed("ui_up"):
-			motion.y = JUMP_HEIGHT  *1.2
-			if left == true:
-				motion.x = wallPush *0.7
-			else:
-				motion.x = -wallPush * 0.7
-			jumped = true
-		
 		
 	# Check if player is on floor and play correct motion
 	if is_on_floor():
@@ -70,6 +59,18 @@ func  movement():
 			motion.y = JUMP_HEIGHT
 		if friction == true:
 			motion.x = lerp(motion.x, 0, 0.9) #make movement smoother
+			
+	#Wall Jumping
+	elif is_on_wall() && is_on_floor() == false && motion.y > motion.y * 0.8:
+		motion.y = motion.y * 0.8
+		$Sprite.play("WallHold")
+		if Input.is_action_just_pressed("ui_up"):
+			motion.y = JUMP_HEIGHT
+			if left == true:
+				motion.x = wallPush *0.9
+			else:
+				motion.x = -wallPush * 0.9
+			jumped = true
 	else:
 		if motion.y > 0:
 			$Sprite.play("Jump")	
@@ -79,7 +80,7 @@ func  movement():
 			motion.x = lerp(motion.x, 0, 0.1) #make movement smoother
 			
 	
-	motion.y += Gravity
+	motion.y += Gravity * SlowEnabled
 	
 	motion = move_and_slide(motion, FLOOR)
 	pass
