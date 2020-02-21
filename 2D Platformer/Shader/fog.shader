@@ -5,7 +5,7 @@ uniform vec3 color = vec3(0, 0, 0);
 uniform int OCTAVES = 9;
 
 float rand(vec2 coord){
-	return fract(sin(dot(coord, vec2(11, 1021)) * 1000.0) * 1000.0);
+	return fract(sin(dot(coord, vec2(12.9898,78.233)) * 43758.5453123) * 1000.0);
 }
 
 float noise(vec2 coord){
@@ -25,7 +25,7 @@ float noise(vec2 coord){
 
 float fbm(vec2 coord){
 	float value = 0.0;
-	float scale = 0.5;
+	float scale = 0.7;
 
 	for(int i = 0; i < OCTAVES; i++){
 		value += noise(coord) * scale;

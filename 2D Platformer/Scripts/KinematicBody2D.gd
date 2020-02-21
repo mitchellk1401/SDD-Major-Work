@@ -3,9 +3,8 @@ extends KinematicBody2D
 const FLOOR = Vector2(0, -1)
 const ACCELERATION = 30
 const MAX_SPEED = 450
-const JUMP_HEIGHT = -350
+const JUMP_HEIGHT = -380
 var Sprint = 1
-var SlowEnabled = 1 # Allows the slowdown effect to not impact the players basic movement
 var Gravity = 10
 var jumped = false
 var wallPush = 525
@@ -15,7 +14,6 @@ var motion = Vector2()
 
 func _physics_process(delta):
 	movement()
-	timeSlow()
 	
 	pass
 	
@@ -24,7 +22,6 @@ func  movement():
 	var touchedWall = false
 	var left = false
 	
-	print(abs(motion.y))
 	
 	# Sprint Modifier -- "ui_sprint" is a custom input for SHIFT key
 	if Input.is_action_just_pressed("ui_sprint"):
@@ -34,14 +31,14 @@ func  movement():
 
 	#Motion Controls
 	if Input.is_action_pressed("ui_right"):		
-		motion.x = min(motion.x + ACCELERATION , MAX_SPEED * Sprint * SlowEnabled)
+		motion.x = min(motion.x + ACCELERATION , MAX_SPEED * Sprint)
 		$Sprite.flip_h = false
 		left = false
 		$Sprite.play("Run")
 		
 		
 	elif Input.is_action_pressed("ui_left"):
-		motion.x = max(motion.x - ACCELERATION, -MAX_SPEED * Sprint * SlowEnabled)
+		motion.x = max(motion.x - ACCELERATION, -MAX_SPEED * Sprint)
 		$Sprite.flip_h = true
 		left = true
 		$Sprite.play("Run")
@@ -50,12 +47,16 @@ func  movement():
 		motion.x = 0	
 		$Sprite.play("Idle")
 		friction = true
+	
+	# Add fast falling
+	if Input.is_action_pressed("ui_down"):
+		motion.y += 35
 		
 	# Check if player is on floor and play correct motion
 	if is_on_floor():
 		jumped = false
 		if Input.is_action_pressed("ui_up"):
-			motion.y = JUMP_HEIGHT
+			motion.y = JUMP_HEIGHT 
 		if friction == true:
 			motion.x = lerp(motion.x, 0, 0.9) #make movement smoother
 			
@@ -63,15 +64,15 @@ func  movement():
 	elif is_on_wall() && is_on_floor() == false :
 		$Sprite.play("WallHold")
 		#Slows the effect of gravity on the player showing the player sliding down the wall
-		motion.y = motion.y * 0.9
+		motion.y = motion.y * 0.9 
 		if Input.is_action_just_pressed("ui_up"):
-			motion.y = JUMP_HEIGHT
+			motion.y = JUMP_HEIGHT 
 			if left == true:
-				motion.x = wallPush * 0.8			
+				motion.x = wallPush * 0.8
 			else:
-				motion.x = -wallPush * 0.8
+				motion.x = -wallPush * 0.8 
 			# Add a delay on the next input after the player jumps off the wall alowing for the jump to carry its initial velocity
-			yield (get_tree().create_timer(1.5), "timeout")			
+			yield (get_tree().create_timer(1.8), "timeout")			
 			jumped = true
 	else:
 		if motion.y > 0:
@@ -82,26 +83,10 @@ func  movement():
 			motion.x = lerp(motion.x, 0, 0.1) #make movement smoother
 			
 	
-	motion.y += Gravity * SlowEnabled
+	motion.y += Gravity 
 	
 	motion = move_and_slide(motion, FLOOR)
 	pass
 	
-func timeSlow():
-	# Slow the entire game down to half when recieves input
-	# Slow enable allows player to continue to move at full speed
-	if Input.is_action_just_pressed("ui_timeSlow"):
-		Engine.time_scale = 0.5
-		SlowEnabled = 2
-	if Input.is_action_just_released("ui_timeSlow"):
-		Engine.time_scale = 1
-		SlowEnabled =1
-		
-	pass
 
-func testing():
-	print("10 second timer")
-	yield (get_tree().create_timer(10), "timeout")
-	print("timed out") 
-	pass
 	

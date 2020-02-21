@@ -20,3 +20,4 @@ tile_data = PoolIntArray( 262141, 9, 0, 262142, 9, 1, 262143, 9, 1, 196608, 9, 1
 
 [node name="Fog" parent="." instance=ExtResource( 4 )]
 position = Vector2( 132.485, 784.79 )
+scale = Vector2( 4, 4 )
