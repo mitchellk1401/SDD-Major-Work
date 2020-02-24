@@ -19,14 +19,14 @@ animations = [ {
 "name": "Run",
 "speed": 10.0
 }, {
+"frames": [ ExtResource( 11 ) ],
+"loop": true,
+"name": "WallHold",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 4 ) ],
 "loop": true,
 "name": "Jump",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 3 ) ],
-"loop": true,
-"name": "Fall",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 2 ) ],
@@ -34,9 +34,9 @@ animations = [ {
 "name": "Idle",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 11 ) ],
+"frames": [ ExtResource( 3 ) ],
 "loop": true,
-"name": "WallHold",
+"name": "Fall",
 "speed": 5.0
 } ]
 
@@ -64,11 +64,3 @@ position = Vector2( -498.953, -308.228 )
 scale = Vector2( 8.04605, 10.2105 )
 texture = ExtResource( 10 )
 centered = false
-
-[node name="RayCast2D - Forward" type="RayCast2D" parent="."]
-enabled = true
-cast_to = Vector2( 16, 0 )
-
-[node name="RayCast2D -Back" type="RayCast2D" parent="."]
-enabled = true
-cast_to = Vector2( -16, 0 )

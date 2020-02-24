@@ -9,6 +9,7 @@ var Gravity = 10
 var jumped = false
 var wallPush = 525
 var motion = Vector2() 
+var gravityFlipped = 1
 
 #use $ to access child objects
 
@@ -82,11 +83,19 @@ func  movement():
 		if friction == true:
 			motion.x = lerp(motion.x, 0, 0.1) #make movement smoother
 			
-	
-	motion.y += Gravity 
+	motion.y += Gravity * gravityFlipped
 	
 	motion = move_and_slide(motion, FLOOR)
 	pass
 	
 
-	
+#When object enters Area2D flip gravity by 1/2 it's original
+func _on_Area2D_body_shape_entered(body_id, body, body_shape, area_shape):	
+	print(gravityFlipped)
+	gravityFlipped = -0.5
+	pass # Replace with function body.
+
+#Restore original gravitational effect
+func _on_Area2D_body_shape_exited(body_id, body, body_shape, area_shape):
+	gravityFlipped = 1
+	pass # Replace with function body.
