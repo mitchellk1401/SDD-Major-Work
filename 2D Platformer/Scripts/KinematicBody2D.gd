@@ -6,21 +6,23 @@ const MAX_SPEED = 450
 const JUMP_HEIGHT = -380
 var Sprint = 1
 var Gravity = 10
-var jumped = false
 var wallPush = 525
 var motion = Vector2() 
 var gravityFlipped = 1
 
-#use $ to access child objects
-
 func _physics_process(delta):
 	movement()
-	
 	pass
 	
 func  movement():
-	var friction = false
-	var touchedWall = false
+	HorizontalMechanics()
+	motion.y += Gravity * gravityFlipped
+	motion = move_and_slide(motion, FLOOR)
+	pass
+	
+# Horizontal Mechanics controls everything to do with left and right inputs, as well as providing the direction of player 
+# the jump mechanics function
+func HorizontalMechanics():
 	var left = false
 	
 	
@@ -47,19 +49,19 @@ func  movement():
 	else:
 		motion.x = 0	
 		$Sprite.play("Idle")
-		friction = true
 	
-	# Add fast falling
+	# Fall Faster
 	if Input.is_action_pressed("ui_down"):
 		motion.y += 35
 		
-	# Check if player is on floor and play correct motion
+	JumpMechanics(left)
+	
+# Jump Mechanics controls Jumping and Wall Jumping 
+func JumpMechanics(left):
+		# Check if player is on floor and play correct motion
 	if is_on_floor():
-		jumped = false
 		if Input.is_action_pressed("ui_up"):
 			motion.y = JUMP_HEIGHT 
-		if friction == true:
-			motion.x = lerp(motion.x, 0, 0.9) #make movement smoother
 			
 	#Wall Jumping
 	elif is_on_wall() && is_on_floor() == false :
@@ -74,28 +76,20 @@ func  movement():
 				motion.x = -wallPush * 0.8 
 			# Add a delay on the next input after the player jumps off the wall alowing for the jump to carry its initial velocity
 			yield (get_tree().create_timer(1.8), "timeout")			
-			jumped = true
 	else:
 		if motion.y > 0:
 			$Sprite.play("Jump")	
 		else:
 			$Sprite.play("Fall")
-		if friction == true:
-			motion.x = lerp(motion.x, 0, 0.1) #make movement smoother
-			
-	motion.y += Gravity * gravityFlipped
-	
-	motion = move_and_slide(motion, FLOOR)
-	pass
-	
 
-#When object enters Area2D flip gravity by 1/2 it's original
-func _on_Area2D_body_shape_entered(body_id, body, body_shape, area_shape):	
+
+# Checks for when the player comes into contact with the arrows which than pushes the player upwards by making the gravity become negative
+func _on_UpGravity_body_shape_entered(body_id, body, body_shape, area_shape):
 	print(gravityFlipped)
 	gravityFlipped = -0.5
 	pass # Replace with function body.
 
-#Restore original gravitational effect
-func _on_Area2D_body_shape_exited(body_id, body, body_shape, area_shape):
+# Restores gravity when the player exits the object
+func _on_UpGravity_body_shape_exited(body_id, body, body_shape, area_shape):
 	gravityFlipped = 1
 	pass # Replace with function body.
