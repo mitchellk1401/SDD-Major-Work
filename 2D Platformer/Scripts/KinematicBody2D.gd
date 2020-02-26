@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 const FLOOR = Vector2(0, -1)
-const ACCELERATION = 30
+const ACCELERATION = 50
 const MAX_SPEED = 450
 const JUMP_HEIGHT = -380
 var Sprint = 1
@@ -20,6 +20,7 @@ func  movement():
 	motion = move_and_slide(motion, FLOOR)
 	pass
 	
+	print(motion.y)
 # Horizontal Mechanics controls everything to do with left and right inputs, as well as providing the direction of player 
 # the jump mechanics function
 func HorizontalMechanics():
@@ -50,9 +51,6 @@ func HorizontalMechanics():
 		motion.x = 0	
 		$Sprite.play("Idle")
 	
-	# Fall Faster
-	if Input.is_action_pressed("ui_down"):
-		motion.y += 35
 		
 	JumpMechanics(left)
 	
@@ -81,6 +79,10 @@ func JumpMechanics(left):
 			$Sprite.play("Jump")	
 		else:
 			$Sprite.play("Fall")
+	
+		# Fall Faster
+	if Input.is_action_pressed("ui_down"):
+		motion.y += 35
 
 
 # Checks for when the player comes into contact with the arrows which than pushes the player upwards by making the gravity become negative
