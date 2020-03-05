@@ -20,7 +20,6 @@ func  movement():
 	motion = move_and_slide(motion, FLOOR)
 	pass
 	
-	print(motion.y)
 # Horizontal Mechanics controls everything to do with left and right inputs, as well as providing the direction of player 
 # the jump mechanics function
 func HorizontalMechanics():
