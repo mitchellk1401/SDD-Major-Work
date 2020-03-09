@@ -9,6 +9,7 @@ var Gravity = 10
 var wallPush = 525
 var motion = Vector2() 
 var gravityFlipped = 1
+var canJump = true
 
 func _physics_process(delta):
 	movement()
@@ -16,6 +17,7 @@ func _physics_process(delta):
 	
 func  movement():
 	HorizontalMechanics()
+	Engine.time_scale = 0.5
 	motion.y += Gravity * gravityFlipped
 	motion = move_and_slide(motion, FLOOR)
 	pass
@@ -55,11 +57,19 @@ func HorizontalMechanics():
 	
 # Jump Mechanics controls Jumping and Wall Jumping 
 func JumpMechanics(left):
-		# Check if player is on floor and play correct motion
+	# Check if player is on floor and play correct motion
 	if is_on_floor():
+		canJump = true
+	if!is_on_floor():
+		delayTimer(canJump)
+	
+	print(canJump)
+	
+	if canJump == true:
 		if Input.is_action_pressed("ui_up"):
 			motion.y = JUMP_HEIGHT 
-			
+		
+	
 	#Wall Jumping
 	elif is_on_wall() && is_on_floor() == false :
 		$Sprite.play("WallHold")
@@ -69,10 +79,11 @@ func JumpMechanics(left):
 			motion.y = JUMP_HEIGHT 
 			if left == true:
 				motion.x = wallPush * 0.8
+				yield (get_tree().create_timer(2), "timeout")	
 			else:
 				motion.x = -wallPush * 0.8 
-			# Add a delay on the next input after the player jumps off the wall alowing for the jump to carry its initial velocity
-			yield (get_tree().create_timer(1.8), "timeout")			
+				yield (get_tree().create_timer(2), "timeout")	
+					
 	else:
 		if motion.y > 0:
 			$Sprite.play("Jump")	
@@ -83,6 +94,8 @@ func JumpMechanics(left):
 		# Fall Faster
 	if Input.is_action_pressed("ui_down"):
 		motion.y += 35
+	
+	
 
 
 # Checks for when the player comes into contact with the arrows which than pushes the player upwards by making the gravity become negative
@@ -95,3 +108,8 @@ func _on_UpGravity_body_shape_entered(body_id, body, body_shape, area_shape):
 func _on_UpGravity_body_shape_exited(body_id, body, body_shape, area_shape):
 	gravityFlipped = 1
 	pass # Replace with function body.
+
+func delayTimer(i):
+	yield (get_tree().create_timer(0.2), "timeout")	
+	i = false
+	print("test")
