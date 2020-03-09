@@ -60,7 +60,7 @@ zoom = Vector2( 1.5, 1.5 )
 
 [node name="Background" type="Sprite" parent="."]
 show_behind_parent = true
-position = Vector2( -498.953, -308.228 )
-scale = Vector2( 8.04605, 10.2105 )
+position = Vector2( -1032.08, -531.949 )
+scale = Vector2( 20, 20 )
 texture = ExtResource( 10 )
 centered = false

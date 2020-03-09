@@ -78,7 +78,8 @@ func JumpMechanics(left):
 			$Sprite.play("Jump")	
 		else:
 			$Sprite.play("Fall")
-	
+	if Input.is_action_just_released("ui_up") && motion.y < 0 :
+		motion.y = 0
 		# Fall Faster
 	if Input.is_action_pressed("ui_down"):
 		motion.y += 35
