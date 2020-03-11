@@ -17,7 +17,6 @@ func _physics_process(delta):
 	
 func  movement():
 	HorizontalMechanics()
-	Engine.time_scale = 0.5
 	motion.y += Gravity * gravityFlipped
 	motion = move_and_slide(motion, FLOOR)
 	pass
@@ -42,7 +41,7 @@ func HorizontalMechanics():
 		$Sprite.play("Run")
 		
 		
-	elif Input.is_action_pressed("ui_left"):
+	elif Input.is_action_pressed("ui_left") :
 		motion.x = max(motion.x - ACCELERATION, -MAX_SPEED * Sprint)
 		$Sprite.flip_h = true
 		left = true
@@ -63,13 +62,10 @@ func JumpMechanics(left):
 	if!is_on_floor():
 		delayTimer(canJump)
 	
-	print(canJump)
-	
-	if canJump == true:
-		if Input.is_action_pressed("ui_up"):
+	if Input.is_action_pressed("ui_up"):
+		if canJump == true:
 			motion.y = JUMP_HEIGHT 
 		
-	
 	#Wall Jumping
 	elif is_on_wall() && is_on_floor() == false :
 		$Sprite.play("WallHold")
@@ -84,16 +80,21 @@ func JumpMechanics(left):
 				motion.x = -wallPush * 0.8 
 				yield (get_tree().create_timer(2), "timeout")	
 					
-	else:
+	elif !is_on_floor():
 		if motion.y > 0:
 			$Sprite.play("Jump")	
-		else:
+			print("test")
+		elif motion.y <0 :
 			$Sprite.play("Fall")
 	if Input.is_action_just_released("ui_up") && motion.y < 0 :
 		motion.y = 0
 		# Fall Faster
 	if Input.is_action_pressed("ui_down"):
 		motion.y += 35
+	
+	if motion.y == 0 && motion.x == 0:
+		$Sprite.play("Idle")
+		
 	
 	
 
@@ -110,6 +111,6 @@ func _on_UpGravity_body_shape_exited(body_id, body, body_shape, area_shape):
 	pass # Replace with function body.
 
 func delayTimer(i):
-	yield (get_tree().create_timer(0.2), "timeout")	
-	i = false
-	print("test")
+	yield (get_tree().create_timer(0.1), "timeout")	
+	canJump = false
+	pass 
