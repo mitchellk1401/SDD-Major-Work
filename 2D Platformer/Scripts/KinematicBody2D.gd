@@ -60,14 +60,19 @@ func JumpMechanics(left):
 	if is_on_floor():
 		canJump = true
 	if!is_on_floor():
-		delayTimer()
+		delayTimerJump()
 	
+	if is_on_wall():
+		canWallJump = true
+	if !is_on_wall():
+		delayTimerWallJump()
 	if Input.is_action_pressed("ui_up"):
 		if canJump == true:
 			motion.y = JUMP_HEIGHT 
 		
+	
 	#Wall Jumping
-	if is_on_wall() && is_on_floor() == false :
+	if canWallJump && !is_on_floor():
 		$Sprite.play("WallHold")
 		#Slows the effect of gravity on the player showing the player sliding down the wall
 		motion.y = motion.y * 0.9 
@@ -106,10 +111,16 @@ func _on_UpGravity_body_shape_exited(body_id, body, body_shape, area_shape):
 	gravityFlipped = 1
 	pass # Replace with function body.
 
-func delayTimer():
+func delayTimerJump():
 	if Input.is_action_pressed("ui_up"):
 		canJump = false
-	yield (get_tree().create_timer(0.1), "timeout")	
+	yield (get_tree().create_timer(0.2), "timeout")	
 	canJump = false
-	
 	return  
+
+func delayTimerWallJump():
+	if Input.is_action_pressed("ui_up"):
+		canWallJump = false
+	yield (get_tree().create_timer(0.4), "timeout")
+	canWallJump = false
+	return
