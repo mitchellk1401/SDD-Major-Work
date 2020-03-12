@@ -10,6 +10,7 @@ var wallPush = 525
 var motion = Vector2() 
 var gravityFlipped = 1
 var canJump = true
+var canWallJump = true
 
 func _physics_process(delta):
 	movement()
@@ -49,8 +50,7 @@ func HorizontalMechanics():
 		
 	else:
 		motion.x = 0	
-		$Sprite.play("Idle")
-	
+		$Sprite.play("Idle")	
 		
 	JumpMechanics(left)
 	
@@ -60,14 +60,14 @@ func JumpMechanics(left):
 	if is_on_floor():
 		canJump = true
 	if!is_on_floor():
-		delayTimer(canJump)
+		delayTimer()
 	
 	if Input.is_action_pressed("ui_up"):
 		if canJump == true:
 			motion.y = JUMP_HEIGHT 
 		
 	#Wall Jumping
-	elif is_on_wall() && is_on_floor() == false :
+	if is_on_wall() && is_on_floor() == false :
 		$Sprite.play("WallHold")
 		#Slows the effect of gravity on the player showing the player sliding down the wall
 		motion.y = motion.y * 0.9 
@@ -75,15 +75,14 @@ func JumpMechanics(left):
 			motion.y = JUMP_HEIGHT 
 			if left == true:
 				motion.x = wallPush * 0.8
-				yield (get_tree().create_timer(2), "timeout")	
+				yield (get_tree().create_timer(1), "timeout")	
 			else:
 				motion.x = -wallPush * 0.8 
-				yield (get_tree().create_timer(2), "timeout")	
+				yield (get_tree().create_timer(1), "timeout")	
 					
-	elif !is_on_floor():
+	else:
 		if motion.y > 0:
 			$Sprite.play("Jump")	
-			print("test")
 		elif motion.y <0 :
 			$Sprite.play("Fall")
 	if Input.is_action_just_released("ui_up") && motion.y < 0 :
@@ -95,9 +94,6 @@ func JumpMechanics(left):
 	if motion.y == 0 && motion.x == 0:
 		$Sprite.play("Idle")
 		
-	
-	
-
 
 # Checks for when the player comes into contact with the arrows which than pushes the player upwards by making the gravity become negative
 func _on_UpGravity_body_shape_entered(body_id, body, body_shape, area_shape):
@@ -110,7 +106,10 @@ func _on_UpGravity_body_shape_exited(body_id, body, body_shape, area_shape):
 	gravityFlipped = 1
 	pass # Replace with function body.
 
-func delayTimer(i):
+func delayTimer():
+	if Input.is_action_pressed("ui_up"):
+		canJump = false
 	yield (get_tree().create_timer(0.1), "timeout")	
 	canJump = false
-	pass 
+	
+	return  
