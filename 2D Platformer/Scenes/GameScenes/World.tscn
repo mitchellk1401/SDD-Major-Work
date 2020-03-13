@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scenes/Object Scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://TileMap/TileSet.tres" type="TileSet" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Scenes/Object Scenes/Portal.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Object Scenes/UpGravity.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/Object Scenes/Lazer.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Object Scenes/Lazer.gd" type="Script" id=7]
 
 [node name="World" type="Node2D"]
 position = Vector2( 159.341, 128 )
@@ -31,5 +32,6 @@ position = Vector2( 3.17316, 109.805 )
 
 [node name="Lazer" parent="." instance=ExtResource( 6 )]
 position = Vector2( -159.331, 78.3894 )
+script = ExtResource( 7 )
 [connection signal="body_shape_entered" from="UpGravity" to="Player" method="_on_UpGravity_body_shape_entered"]
 [connection signal="body_shape_exited" from="UpGravity" to="Player" method="_on_UpGravity_body_shape_exited"]

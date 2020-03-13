@@ -124,3 +124,8 @@ func delayTimerWallJump():
 	yield (get_tree().create_timer(0.4), "timeout")
 	canWallJump = false
 	return
+
+
+func _on_Lazer_body_shape_entered(body_id, body, body_shape, area_shape):
+	
+	pass # Replace with function body.
