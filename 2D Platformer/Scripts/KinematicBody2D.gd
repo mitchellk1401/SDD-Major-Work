@@ -10,7 +10,8 @@ var wallPush = 525
 var motion = Vector2() 
 var gravityFlipped = 1
 var canJump = true
-var canWallJump = true
+var timer = null
+var delayTime = 0.1
 
 func _physics_process(delta):
 	movement()
@@ -59,20 +60,16 @@ func JumpMechanics(left):
 	# Check if player is on floor and play correct motion
 	if is_on_floor():
 		canJump = true
-	if!is_on_floor():
+	if !is_on_floor():
 		delayTimerJump()
 	
-	if is_on_wall():
-		canWallJump = true
-	if !is_on_wall():
-		delayTimerWallJump()
 	if Input.is_action_pressed("ui_up"):
 		if canJump == true:
 			motion.y = JUMP_HEIGHT 
 		
 	
 	#Wall Jumping
-	if canWallJump && !is_on_floor():
+	if is_on_wall() && !is_on_floor():
 		$Sprite.play("WallHold")
 		#Slows the effect of gravity on the player showing the player sliding down the wall
 		motion.y = motion.y * 0.9 
@@ -112,20 +109,17 @@ func _on_UpGravity_body_shape_exited(body_id, body, body_shape, area_shape):
 	pass # Replace with function body.
 
 func delayTimerJump():
-	if Input.is_action_pressed("ui_up"):
-		canJump = false
-	yield (get_tree().create_timer(0.2), "timeout")	
-	canJump = false
+	#yield (get_tree().create_timer(0.1), "timeout")	
+	#canJump = false
+	timer = Timer.new()
+	timer.set_one_shot(true)
+	timer.set_wait_time(delayTime)
+	timer.connect("timeout", self, "onTimeoutComplete")
+	add_child(timer)
+	timer.start()
 	return  
-
-func delayTimerWallJump():
-	if Input.is_action_pressed("ui_up"):
-		canWallJump = false
-	yield (get_tree().create_timer(0.4), "timeout")
-	canWallJump = false
-	return
-
-
-func _on_Lazer_body_shape_entered(body_id, body, body_shape, area_shape):
 	
-	pass # Replace with function body.
+func onTimeoutComplete():
+	canJump = false
+	
+
