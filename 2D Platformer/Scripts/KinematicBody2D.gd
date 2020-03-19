@@ -77,10 +77,10 @@ func JumpMechanics(left):
 			motion.y = JUMP_HEIGHT 
 			if left == true:
 				motion.x = wallPush * 0.8
-				yield (get_tree().create_timer(1), "timeout")	
+					
 			else:
 				motion.x = -wallPush * 0.8 
-				yield (get_tree().create_timer(1), "timeout")	
+				
 					
 	else:
 		if motion.y > 0:

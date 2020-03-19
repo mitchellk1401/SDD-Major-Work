@@ -31,7 +31,7 @@ world_scene = "res://Scenes/GameScenes/World2.tscn"
 position = Vector2( 3.17316, 109.805 )
 
 [node name="Lazer" parent="." instance=ExtResource( 6 )]
-position = Vector2( -159.331, 78.3894 )
+position = Vector2( -651.965, 61.5472 )
 script = ExtResource( 7 )
 [connection signal="body_shape_entered" from="UpGravity" to="Player" method="_on_UpGravity_body_shape_entered"]
 [connection signal="body_shape_exited" from="UpGravity" to="Player" method="_on_UpGravity_body_shape_exited"]
