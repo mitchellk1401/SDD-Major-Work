@@ -1,5 +1,4 @@
-extends Area2D
-
+extends Node2D
 # Export: Makes a variable which can be edited/ placed in the inspector for the scene
 export(String, FILE, "*.tscn") var world_scene
 var activeTime =5
@@ -14,19 +13,15 @@ func _ready():
 func _physics_process(delta):
 	
 	if enabled == true:
-		set_physics_process(true) 
-		$AnimatedSprite.set_process(true)
+		$Area2D.set_process(true)
+		$AnimatedSprite.show()
 	else:
-		set_physics_process(false)
-		$AnimatedSprite.set_process(false)
-
-
+		$Area2D.set_process(false)
+		$AnimatedSprite.hide()
 	
-	
-	
-	var bodies = get_overlapping_bodies()
+	var bodies = $Area2D.get_overlapping_bodies()
 	for body in bodies:
-		if body.name == "Player":
+		if body.name == "Player" && enabled == true:
 			get_tree().reload_current_scene()
 	pass
 

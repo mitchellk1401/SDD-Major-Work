@@ -2,16 +2,17 @@ extends KinematicBody2D
 
 const FLOOR = Vector2(0, -1)
 const ACCELERATION = 50
-const MAX_SPEED = 450
-const JUMP_HEIGHT = -380
+const MAX_SPEED = 350
+const JUMP_HEIGHT = -325
 var Sprint = 1
 var Gravity = 10
 var wallPush = 525
 var motion = Vector2() 
 var gravityFlipped = 1
 var canJump = true
+var canWallJump = true
 var timer = null
-var delayTime = 0.1
+var delayTime = 0.2
 
 func _physics_process(delta):
 	movement()
@@ -60,8 +61,11 @@ func JumpMechanics(left):
 	# Check if player is on floor and play correct motion
 	if is_on_floor():
 		canJump = true
-	if !is_on_floor():
+	else:
 		delayTimerJump()
+	
+		
+
 	
 	if Input.is_action_pressed("ui_up"):
 		if canJump == true:
@@ -79,7 +83,7 @@ func JumpMechanics(left):
 				motion.x = wallPush * 0.8
 					
 			else:
-				motion.x = -wallPush * 0.8 
+				motion.x = -wallPush * 0.8
 				
 					
 	else:
@@ -95,7 +99,11 @@ func JumpMechanics(left):
 	
 	if motion.y == 0 && motion.x == 0:
 		$Sprite.play("Idle")
-		
+	
+	if is_on_ceiling():
+		$Sprite.flip_v = true
+	else:
+		$Sprite.flip_v = false
 
 # Checks for when the player comes into contact with the arrows which than pushes the player upwards by making the gravity become negative
 func _on_UpGravity_body_shape_entered(body_id, body, body_shape, area_shape):
@@ -109,17 +117,17 @@ func _on_UpGravity_body_shape_exited(body_id, body, body_shape, area_shape):
 	pass # Replace with function body.
 
 func delayTimerJump():
-	#yield (get_tree().create_timer(0.1), "timeout")	
-	#canJump = false
 	timer = Timer.new()
 	timer.set_one_shot(true)
 	timer.set_wait_time(delayTime)
-	timer.connect("timeout", self, "onTimeoutComplete")
+	timer.connect("timeout", self, "onTimeoutCompleteJump")
 	add_child(timer)
 	timer.start()
 	return  
+
 	
-func onTimeoutComplete():
+func onTimeoutCompleteJump():
 	canJump = false
-	
+
+
 
