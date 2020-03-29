@@ -32,7 +32,7 @@ func HorizontalMechanics():
 	
 	# Sprint Modifier -- "ui_sprint" is a custom input for SHIFT key
 	if Input.is_action_just_pressed("ui_sprint"):
-		Sprint = 1.3
+		Sprint = 1.4
 	if Input.is_action_just_released("ui_sprint"):
 		Sprint = 1
 
@@ -64,9 +64,6 @@ func JumpMechanics(left):
 	else:
 		delayTimerJump()
 	
-		
-
-	
 	if Input.is_action_pressed("ui_up"):
 		if canJump == true:
 			motion.y = JUMP_HEIGHT 
@@ -94,8 +91,8 @@ func JumpMechanics(left):
 	if Input.is_action_just_released("ui_up") && motion.y < 0 :
 		motion.y = 0
 		# Fall Faster
-	if Input.is_action_pressed("ui_down"):
-		motion.y += 35
+	if Input.is_action_pressed("ui_down") && is_on_ceiling():
+		motion.y = -JUMP_HEIGHT
 	
 	if motion.y == 0 && motion.x == 0:
 		$Sprite.play("Idle")
@@ -108,7 +105,7 @@ func JumpMechanics(left):
 # Checks for when the player comes into contact with the arrows which than pushes the player upwards by making the gravity become negative
 func _on_UpGravity_body_shape_entered(body_id, body, body_shape, area_shape):
 	print(gravityFlipped)
-	gravityFlipped = -0.5
+	gravityFlipped = -0.8
 	pass # Replace with function body.
 
 # Restores gravity when the player exits the object
@@ -116,6 +113,7 @@ func _on_UpGravity_body_shape_exited(body_id, body, body_shape, area_shape):
 	gravityFlipped = 1
 	pass # Replace with function body.
 
+#Create a timer than on timeout calls onTimeoutCompleteJump()
 func delayTimerJump():
 	timer = Timer.new()
 	timer.set_one_shot(true)
