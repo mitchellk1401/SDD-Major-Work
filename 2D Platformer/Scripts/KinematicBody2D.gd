@@ -13,6 +13,8 @@ var canJump = true
 var canWallJump = true
 var timer = null
 var delayTime = 0.2
+var canHoldWall = true
+var delayTimeJump = 0.05
 
 func _physics_process(delta):
 	movement()
@@ -63,6 +65,10 @@ func JumpMechanics(left):
 		canJump = true
 	else:
 		delayTimerJump()
+	if is_on_wall() && !is_on_floor():
+		canWallJump = true
+	else: 
+		delayTimerWallJump()
 	
 	if Input.is_action_pressed("ui_up"):
 		if canJump == true:
@@ -70,12 +76,12 @@ func JumpMechanics(left):
 		
 	
 	#Wall Jumping
-	if is_on_wall() && !is_on_floor():
+	if canWallJump == true:
 		$Sprite.play("WallHold")
 		#Slows the effect of gravity on the player showing the player sliding down the wall
 		motion.y = motion.y * 0.9 
 		if Input.is_action_just_pressed("ui_up"):
-			motion.y = JUMP_HEIGHT 
+			motion.y = JUMP_HEIGHT * 1.4
 			if left == true:
 				motion.x = wallPush * 0.8
 					
@@ -93,7 +99,7 @@ func JumpMechanics(left):
 		# Fall Faster
 	if Input.is_action_pressed("ui_down") && is_on_ceiling():
 		motion.y = -JUMP_HEIGHT
-	
+
 	if motion.y == 0 && motion.x == 0:
 		$Sprite.play("Idle")
 	
@@ -127,5 +133,16 @@ func delayTimerJump():
 func onTimeoutCompleteJump():
 	canJump = false
 
+func delayTimerWallJump():
+	timer = Timer.new()
+	timer.set_one_shot(true)
+	timer.set_wait_time(delayTimeJump)
+	timer.connect("timeout", self, "onTimeoutCompleteWallJump")
+	add_child(timer)
+	timer.start()
+	return  
 
+	
+func onTimeoutCompleteWallJump():
+	canWallJump = false
 
