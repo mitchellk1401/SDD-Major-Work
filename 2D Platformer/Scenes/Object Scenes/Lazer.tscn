@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Sprites/Obsticles/lazer/Lazers1.png" type="Texture" id=1]
 [ext_resource path="res://Sprites/Obsticles/lazer/Lazers3.png" type="Texture" id=2]
 [ext_resource path="res://Sprites/Obsticles/lazer/Lazers2.png" type="Texture" id=3]
 [ext_resource path="res://Sprites/Obsticles/lazer/Lazers4.png" type="Texture" id=4]
 [ext_resource path="res://Scripts/Lazer.gd" type="Script" id=5]
+[ext_resource path="res://Sprites/Obsticles/lazer/holder.png" type="Texture" id=6]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -23,10 +24,14 @@ script = ExtResource( 5 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
-frame = 1
+frame = 3
 playing = true
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource( 2 )
+
+[node name="holder" type="Sprite" parent="."]
+position = Vector2( -5.96046e-08, -14 )
+texture = ExtResource( 6 )

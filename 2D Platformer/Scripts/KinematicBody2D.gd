@@ -110,7 +110,6 @@ func JumpMechanics(left):
 
 # Checks for when the player comes into contact with the arrows which than pushes the player upwards by making the gravity become negative
 func _on_UpGravity_body_shape_entered(body_id, body, body_shape, area_shape):
-	print(gravityFlipped)
 	gravityFlipped = -0.8
 	pass # Replace with function body.
 
