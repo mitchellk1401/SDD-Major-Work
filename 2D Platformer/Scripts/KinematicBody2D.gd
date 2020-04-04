@@ -15,6 +15,8 @@ var timer = null
 var delayTime = 0.2
 var canHoldWall = true
 var delayTimeJump = 0.05
+var isSprinting = null
+var isInMotion = null
 
 func _physics_process(delta):
 	movement()
@@ -35,8 +37,10 @@ func HorizontalMechanics():
 	# Sprint Modifier -- "ui_sprint" is a custom input for SHIFT key
 	if Input.is_action_just_pressed("ui_sprint"):
 		Sprint = 1.4
+		isSprinting = true
 	if Input.is_action_just_released("ui_sprint"):
 		Sprint = 1
+		isSprinting = false
 
 	#Motion Controls
 	if Input.is_action_pressed("ui_right"):		
@@ -44,6 +48,8 @@ func HorizontalMechanics():
 		$Sprite.flip_h = false
 		left = false
 		$Sprite.play("Run")
+		isInMotion = true
+		
 		
 		
 	elif Input.is_action_pressed("ui_left") :
@@ -51,11 +57,26 @@ func HorizontalMechanics():
 		$Sprite.flip_h = true
 		left = true
 		$Sprite.play("Run")
+		isInMotion = true
 		
 	else:
 		motion.x = 0	
 		$Sprite.play("Idle")	
-		
+		isInMotion = false
+	
+	if (isInMotion && isSprinting && is_on_floor()):
+		$SFX/Walking.stop()
+		if ($SFX/Sprinting.is_playing() == false):		
+			$SFX/Sprinting.play()
+
+	elif (isInMotion && is_on_floor()):
+		$SFX/Sprinting.stop()
+		if ($SFX/Walking.is_playing() == false):	
+			$SFX/Walking.play()
+	else:
+		$SFX/Sprinting.stop()
+		$SFX/Walking.stop()
+	
 	JumpMechanics(left)
 	
 # Jump Mechanics controls Jumping and Wall Jumping 

@@ -10,3 +10,4 @@ func _on_StartGameButton_pressed():
 func _on_QuitGameButton2_pressed():
 	get_tree().quit()
 	pass # Replace with function body.
+
