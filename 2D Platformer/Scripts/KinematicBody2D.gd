@@ -171,4 +171,5 @@ func delayTimerWallJump():
 	
 func onTimeoutCompleteWallJump():
 	canWallJump = false
+	
 

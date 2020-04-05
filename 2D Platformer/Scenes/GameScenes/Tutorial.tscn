@@ -17,11 +17,11 @@ default_font = SubResource( 1 )
 
 [node name="Tutorial" type="Node2D"]
 
+[node name="Player" parent="." instance=ExtResource( 3 )]
+position = Vector2( -250, 70 )
+
 [node name="Fog" parent="." instance=ExtResource( 2 )]
 position = Vector2( -6.10889, 0.0382385 )
-
-[node name="Player" parent="." instance=ExtResource( 3 )]
-position = Vector2( -245.27, 74.9453 )
 
 [node name="TileMap" parent="." instance=ExtResource( 1 )]
 position = Vector2( 40.8208, -13.4992 )
