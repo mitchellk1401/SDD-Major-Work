@@ -64,6 +64,11 @@ func HorizontalMechanics():
 		$Sprite.play("Idle")	
 		isInMotion = false
 	
+		if(isSprinting == true):
+			$Sprite.speed_scale = 1.4
+		else:
+			$Sprite.speed_scale = 1
+			
 	if (isInMotion && isSprinting && is_on_floor()):
 		$SFX/Walking.stop()
 		if ($SFX/Sprinting.is_playing() == false):		
@@ -128,6 +133,7 @@ func JumpMechanics(left):
 		$Sprite.flip_v = true
 	else:
 		$Sprite.flip_v = false
+	
 
 # Checks for when the player comes into contact with the arrows which than pushes the player upwards by making the gravity become negative
 func _on_UpGravity_body_shape_entered(body_id, body, body_shape, area_shape):

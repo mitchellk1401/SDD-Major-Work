@@ -21,11 +21,6 @@ animations = [ {
 "name": "Run",
 "speed": 10.0
 }, {
-"frames": [ ExtResource( 11 ) ],
-"loop": true,
-"name": "WallHold",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 3 ) ],
 "loop": true,
 "name": "Fall",
@@ -39,6 +34,11 @@ animations = [ {
 "frames": [ ExtResource( 2 ) ],
 "loop": true,
 "name": "Idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 11 ) ],
+"loop": true,
+"name": "WallHold",
 "speed": 5.0
 } ]
 
@@ -62,7 +62,7 @@ zoom = Vector2( 1.5, 1.5 )
 
 [node name="Background" type="Sprite" parent="."]
 show_behind_parent = true
-position = Vector2( -1032.08, -531.949 )
+position = Vector2( -1032.08, -532.133 )
 scale = Vector2( 20, 20 )
 z_index = -10
 z_as_relative = false
