@@ -21,7 +21,7 @@ config/icon="res://Original Items/icon.png"
 
 [autoload]
 
-Music="*res://Scenes/Object Scenes/Music.tscn"
+Music="*res://Scenes/ObjectScenes/Music.tscn"
 
 [display]
 

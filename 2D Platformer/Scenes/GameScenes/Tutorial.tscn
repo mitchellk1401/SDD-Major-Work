@@ -1,12 +1,14 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://Scenes/Object Scenes/TileMap.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Scenes/Object Scenes/Fog.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scenes/Object Scenes/Player.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scenes/Object Scenes/PortalFlipped.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scenes/Object Scenes/UpGravity.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Scenes/Object Scenes/Lazer.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/ObjectScenes/TileMap.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/ObjectScenes/Fog.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/ObjectScenes/Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/ObjectScenes/PortalFlipped.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/ObjectScenes/UpGravity.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/ObjectScenes/Lazer.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Fonts/atwriter.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://Sprites/Obsticles/arrowsGuide.png" type="Texture" id=8]
+
 
 [sub_resource type="DynamicFont" id=1]
 size = 13
@@ -97,12 +99,13 @@ __meta__ = {
 }
 
 [node name="RichTextLabel7" type="RichTextLabel" parent="LabelsTutorial"]
-margin_left = 1184.0
-margin_top = -525.0
-margin_right = 1420.0
-margin_bottom = -390.0
+margin_left = 1180.0
+margin_top = -640.0
+margin_right = 1416.0
+margin_bottom = -420.0
 text = "When Entering The Arrows, The Gravity Become Flipped. Use This To Your Advantage. Also When You Are Touching The Roof You Can Pressed The Down Arrow Or S To Jump Off, Remember This
-"
+
+The Green Arrows Will Guide You Closer Towards The Portal"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -130,5 +133,11 @@ scale = Vector2( 7, 7 )
 position = Vector2( 83.2906, -395.517 )
 scale = Vector2( 4, 4 )
 world_scene = "res://Scenes/GameScenes/World.tscn"
+
+[node name="arrowsGuide" type="Sprite" parent="."]
+position = Vector2( 1310, -410 )
+rotation = 4.71239
+scale = Vector2( 3, 3 )
+texture = ExtResource( 8 )
 [connection signal="body_shape_entered" from="UpGravity" to="Player" method="_on_UpGravity_body_shape_entered"]
 [connection signal="body_shape_exited" from="UpGravity" to="Player" method="_on_UpGravity_body_shape_exited"]
