@@ -15,9 +15,14 @@ func _physics_process(delta):
 	if enabled == true:
 		$Area2D.set_process(true)
 		$AnimatedSprite.show()
+		if($AudioStreamPlayer2D.playing == false):
+			$AudioStreamPlayer2D.play(true)
 	else:
+		$AudioStreamPlayer2D.stop()
 		$Area2D.set_process(false)
 		$AnimatedSprite.hide()
+		
+	
 	
 	var bodies = $Area2D.get_overlapping_bodies()
 	for body in bodies:

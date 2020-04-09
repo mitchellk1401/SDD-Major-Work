@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/landing.ogg-b0b5100af0e8065600a2dfaa63a68739.oggstr"
+
+[deps]
+
+source_file="res://Sound/FX/yd-Sounds/landing.ogg"
+dest_files=[ "res://.import/landing.ogg-b0b5100af0e8065600a2dfaa63a68739.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

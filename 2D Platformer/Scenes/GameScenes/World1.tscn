@@ -81,7 +81,7 @@ position = Vector2( -230, 1920 )
 scale = Vector2( 4, 4 )
 
 [node name="Boundaries" parent="." instance=ExtResource( 5 )]
-position = Vector2( 400, 2060 )
+position = Vector2( 390, 2180 )
 
 [node name="Portal" parent="." instance=ExtResource( 6 )]
 position = Vector2( -2470, 720 )

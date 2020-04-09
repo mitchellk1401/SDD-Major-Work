@@ -1,6 +1,10 @@
 extends Control
 
-
+func _physics_process(delta):
+	var music = get_node("/root/Music")
+	if Input.is_action_just_pressed("ui_accept"):
+		get_tree().change_scene("res://Scenes/GameScenes/Tutorial.tscn")
+		music.play(true)
 
 	
 func _on_StartGameButton_pressed():

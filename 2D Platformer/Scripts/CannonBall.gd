@@ -35,11 +35,6 @@ func _ready():
 	
 func _physics_process(delta):	 
 	var bodies = $Area2D.get_overlapping_bodies()
-	
-
-
-		
-	
 	var collide = move_and_collide(direction)
 	
 	for body in bodies:

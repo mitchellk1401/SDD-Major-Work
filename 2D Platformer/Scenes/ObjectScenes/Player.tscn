@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Scripts/KinematicBody2D.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Player/Idle0.png" type="Texture" id=2]
@@ -11,10 +11,11 @@
 [ext_resource path="res://Sprites/Player/Run4.png" type="Texture" id=9]
 [ext_resource path="res://Sprites/background.png" type="Texture" id=10]
 [ext_resource path="res://Sprites/Player/WallHold.png" type="Texture" id=11]
-[ext_resource path="res://Sound/FX/yd-Sounds/yd-Sounds/steps_platform.ogg" type="AudioStream" id=12]
-[ext_resource path="res://Sound/FX/yd-Sounds/yd-Sounds/steps_platform2.ogg" type="AudioStream" id=13]
+[ext_resource path="res://Sound/FX/yd-Sounds/steps_platform2.ogg" type="AudioStream" id=12]
+[ext_resource path="res://Sound/FX/yd-Sounds/steps_platform.ogg" type="AudioStream" id=13]
 [ext_resource path="res://Scripts/Pause.gd" type="Script" id=14]
 [ext_resource path="res://Scenes/GameScenes/Theme.tres" type="Theme" id=15]
+[ext_resource path="res://Sound/FX/yd-Sounds/landing.ogg" type="AudioStream" id=16]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 16.55, 27.923 )
@@ -25,6 +26,11 @@ animations = [ {
 "loop": true,
 "name": "Run",
 "speed": 10.0
+}, {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "Idle",
+"speed": 5.0
 }, {
 "frames": [ ExtResource( 4 ) ],
 "loop": true,
@@ -39,11 +45,6 @@ animations = [ {
 "frames": [ ExtResource( 3 ) ],
 "loop": true,
 "name": "Fall",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 2 ) ],
-"loop": true,
-"name": "Idle",
 "speed": 5.0
 } ]
 
@@ -70,8 +71,8 @@ zoom = Vector2( 1.5, 1.5 )
 
 [node name="Background" type="Sprite" parent="."]
 show_behind_parent = true
-position = Vector2( -1236.93, -541.443 )
-scale = Vector2( 20, 20 )
+position = Vector2( -1860, -830 )
+scale = Vector2( 30, 30 )
 z_index = -10
 z_as_relative = false
 texture = ExtResource( 10 )
@@ -83,12 +84,15 @@ __meta__ = {
 [node name="SFX" type="Node" parent="."]
 
 [node name="Walking" type="AudioStreamPlayer" parent="SFX"]
-stream = ExtResource( 12 )
+stream = ExtResource( 13 )
 volume_db = -22.0
 
 [node name="Sprinting" type="AudioStreamPlayer" parent="SFX"]
-stream = ExtResource( 13 )
+stream = ExtResource( 12 )
 volume_db = -22.0
+
+[node name="Landing" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource( 16 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

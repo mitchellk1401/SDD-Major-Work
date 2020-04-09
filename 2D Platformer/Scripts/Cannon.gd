@@ -14,6 +14,10 @@ func _physics_process(delta):
 		shot = true
 		cannonShoot()
 		$ShootingPoint.add_child(player)
+		$AudioStreamPlayer2D.play(true)
+	
+		
+		
 
 func cannonShoot():
 	timer = Timer.new()
@@ -26,3 +30,4 @@ func cannonShoot():
 
 func canShoot():
 	shot = false
+	$AudioStreamPlayer2D.stop()

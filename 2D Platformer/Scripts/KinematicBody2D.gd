@@ -99,8 +99,7 @@ func JumpMechanics(left):
 	if Input.is_action_pressed("ui_up"):
 		if canJump == true:
 			motion.y = JUMP_HEIGHT 
-		
-	
+		 
 	#Wall Jumping
 	if canWallJump == true:
 		$Sprite.play("WallHold")
@@ -123,9 +122,10 @@ func JumpMechanics(left):
 	if Input.is_action_just_released("ui_up") && motion.y < 0 :
 		motion.y = 0
 		# Fall Faster
-	if Input.is_action_pressed("ui_down") && is_on_ceiling():
+	if Input.is_action_pressed("ui_down") :
 		motion.y = -JUMP_HEIGHT
 
+		
 	if motion.y == 0 && motion.x == 0:
 		$Sprite.play("Idle")
 	
@@ -133,6 +133,7 @@ func JumpMechanics(left):
 		$Sprite.flip_v = true
 	else:
 		$Sprite.flip_v = false
+	
 	
 #Create a timer than on timeout calls onTimeoutCompleteJump()
 func delayTimerJump():
@@ -144,7 +145,6 @@ func delayTimerJump():
 	timer.start()
 	return  
 
-	
 func onTimeoutCompleteJump():
 	canJump = false
 
@@ -157,22 +157,18 @@ func delayTimerWallJump():
 	timer.start()
 	return  
 
-	
 func onTimeoutCompleteWallJump():
 	canWallJump = false
-
 
 func _on_Area2D_body_shape_entered(body_id, body, body_shape, area_shape):
 	get_tree().reload_current_scene()
 	pass # Replace with function body.
-
 
 func _on_UpGravity_body_entered(body):
 	if body.get_name() == "Player":
 		gravityFlipped = -1
 		
 	pass # Replace with function body.
-
 
 func _on_UpGravity_body_exited(body):
 	gravityFlipped = 1
