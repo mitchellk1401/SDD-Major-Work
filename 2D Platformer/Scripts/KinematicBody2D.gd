@@ -89,7 +89,7 @@ func JumpMechanics(left):
 	# Check if player is on floor and play correct motion
 	if is_on_floor():
 		canJump = true
-	else:
+	else: #Coyote Timer
 		delayTimerJump()
 	if is_on_wall() && !is_on_floor():
 		canWallJump = true
@@ -98,6 +98,8 @@ func JumpMechanics(left):
 	
 	if Input.is_action_pressed("ui_up"):
 		if canJump == true:
+			if($SFX/Jumping.playing == false):
+				$SFX/Jumping.play()
 			motion.y = JUMP_HEIGHT 
 		 
 	#Wall Jumping
@@ -106,6 +108,8 @@ func JumpMechanics(left):
 		#Slows the effect of gravity on the player showing the player sliding down the wall
 		motion.y = motion.y * 0.9 
 		if Input.is_action_just_pressed("ui_up"):
+			if($SFX/Jumping.playing == false):
+				$SFX/Jumping.play()
 			motion.y = JUMP_HEIGHT * 1.4
 			if left == true:
 				motion.x = wallPush * 0.8
@@ -125,7 +129,6 @@ func JumpMechanics(left):
 	if Input.is_action_pressed("ui_down") :
 		motion.y = -JUMP_HEIGHT
 
-		
 	if motion.y == 0 && motion.x == 0:
 		$Sprite.play("Idle")
 	
@@ -173,3 +176,6 @@ func _on_UpGravity_body_entered(body):
 func _on_UpGravity_body_exited(body):
 	gravityFlipped = 1
 	pass # Replace with function body.
+
+
+
