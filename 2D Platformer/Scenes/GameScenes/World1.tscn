@@ -21,6 +21,7 @@ position = Vector2( 220, 320 )
 
 [node name="Fog" parent="." instance=ExtResource( 2 )]
 position = Vector2( 350, 290 )
+z_index = 43
 
 [node name="GravityObj" type="Node" parent="."]
 

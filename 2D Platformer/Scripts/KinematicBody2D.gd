@@ -20,6 +20,8 @@ var isInMotion = null
 
 func _physics_process(delta):
 	movement()
+	if Input.is_action_just_pressed("Restart"):
+		get_tree().reload_current_scene()
 	pass
 	
 func  movement():
