@@ -47,7 +47,7 @@ func HorizontalMechanics():
 	#Motion Controls
 	if Input.is_action_pressed("ui_right"):		
 		motion.x = min(motion.x + ACCELERATION , MAX_SPEED * Sprint)
-		$Sprite.flip_h = false
+		$Sprite.flip_h = false # $allows access to function of $x x class
 		left = false
 		$Sprite.play("Run")
 		isInMotion = true
@@ -115,11 +115,8 @@ func JumpMechanics(left):
 			motion.y = JUMP_HEIGHT * 1.4
 			if left == true:
 				motion.x = wallPush * 0.8
-					
 			else:
 				motion.x = -wallPush * 0.8
-				
-					
 	else:
 		if motion.y > 0:
 			$Sprite.play("Jump")	
@@ -129,7 +126,7 @@ func JumpMechanics(left):
 		motion.y = 0
 		# Fall Faster
 	if Input.is_action_pressed("ui_down") :
-		motion.y = -JUMP_HEIGHT
+		motion.y += Gravity * gravityFlipped
 
 	if motion.y == 0 && motion.x == 0:
 		$Sprite.play("Idle")
