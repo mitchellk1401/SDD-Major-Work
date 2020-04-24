@@ -125,8 +125,11 @@ func JumpMechanics(left):
 	if Input.is_action_just_released("ui_up") && motion.y < 0 :
 		motion.y = 0
 		# Fall Faster
-	if Input.is_action_pressed("ui_down") :
-		motion.y += Gravity * gravityFlipped
+	if Input.is_action_just_pressed("ui_down"):
+		if motion.y !=0:
+			motion.y += Gravity * gravityFlipped
+		else:
+			motion.y = 350
 
 	if motion.y == 0 && motion.x == 0:
 		$Sprite.play("Idle")
