@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/icon2.png-3f355af29bda8875d967fbf48fc9c7e5.stex"
+path="res://.import/movingPlatform1.png-fba7e1cf3335d70d93652b9440baccd7.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Original Items/icon2.png"
-dest_files=[ "res://.import/icon2.png-3f355af29bda8875d967fbf48fc9c7e5.stex" ]
+source_file="res://Sprites/Obsticles/Missiles/movingPlatform1.png"
+dest_files=[ "res://.import/movingPlatform1.png-fba7e1cf3335d70d93652b9440baccd7.stex" ]
 
 [params]
 

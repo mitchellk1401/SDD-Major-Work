@@ -92,11 +92,11 @@ func JumpMechanics(left):
 	if is_on_floor():
 		canJump = true
 	else: #Coyote Timer
-		delayTimerJump()
+		delayTimer(delayTimeJump, "onTimeoutCompleteJump") 
 	if is_on_wall() && !is_on_floor():
 		canWallJump = true
 	else: 
-		delayTimerWallJump()
+		delayTimer(delayTimeJump, "onTimeoutCompleteWallJump") 
 	
 	if Input.is_action_pressed("ui_up"):
 		if canJump == true:
@@ -141,11 +141,11 @@ func JumpMechanics(left):
 	
 	
 #Create a timer than on timeout calls onTimeoutCompleteJump()
-func delayTimerJump():
+func delayTimer(timeToWait, functionName):
 	timer = Timer.new()
 	timer.set_one_shot(true)
-	timer.set_wait_time(delayTime)
-	timer.connect("timeout", self, "onTimeoutCompleteJump")
+	timer.set_wait_time(timeToWait)
+	timer.connect("timeout", self, functionName)
 	add_child(timer)
 	timer.start()
 	return  
@@ -153,14 +153,6 @@ func delayTimerJump():
 func onTimeoutCompleteJump():
 	canJump = false
 
-func delayTimerWallJump():
-	timer = Timer.new()
-	timer.set_one_shot(true)
-	timer.set_wait_time(delayTimeJump)
-	timer.connect("timeout", self, "onTimeoutCompleteWallJump")
-	add_child(timer)
-	timer.start()
-	return  
 
 func onTimeoutCompleteWallJump():
 	canWallJump = false
@@ -178,6 +170,3 @@ func _on_UpGravity_body_entered(body):
 func _on_UpGravity_body_exited(body):
 	gravityFlipped = 1
 	pass # Replace with function body.
-
-
-
