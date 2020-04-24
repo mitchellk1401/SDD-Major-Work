@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Scripts/KinematicBody2D.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/PlayerM/Player4.png" type="Texture" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://Sprites/PlayerM/Player7.png" type="Texture" id=8]
 [ext_resource path="res://Sprites/PlayerM/Player1.png" type="Texture" id=9]
 [ext_resource path="res://Sprites/background.png" type="Texture" id=10]
+[ext_resource path="res://Light/2DLight.png" type="Texture" id=11]
 [ext_resource path="res://Sound/FX/yd-Sounds/steps_platform2.ogg" type="AudioStream" id=12]
 [ext_resource path="res://Sound/FX/yd-Sounds/steps_platform.ogg" type="AudioStream" id=13]
 [ext_resource path="res://Scripts/Pause.gd" type="Script" id=14]
@@ -23,9 +24,9 @@ animations = [ {
 "name": "Jump",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 7 ) ],
+"frames": [ ExtResource( 6 ) ],
 "loop": true,
-"name": "Fall",
+"name": "WallHold",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 3 ), ExtResource( 2 ), ExtResource( 4 ), ExtResource( 5 ) ],
@@ -33,14 +34,14 @@ animations = [ {
 "name": "Run",
 "speed": 10.0
 }, {
+"frames": [ ExtResource( 7 ) ],
+"loop": true,
+"name": "Fall",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 9 ) ],
 "loop": true,
 "name": "Idle",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 6 ) ],
-"loop": true,
-"name": "WallHold",
 "speed": 5.0
 } ]
 
@@ -52,6 +53,7 @@ scale = Vector2( 1.2, 1.2 )
 script = ExtResource( 1 )
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
+light_mask = 2
 frames = SubResource( 1 )
 animation = "Idle"
 
@@ -61,6 +63,7 @@ scale = Vector2( 0.703, 1.053 )
 shape = SubResource( 2 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2( 0, -45.664 )
 current = true
 
 [node name="Background" type="Sprite" parent="."]
@@ -139,6 +142,14 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -24.0
 margin_top = -29.0
+
+[node name="Light2D" type="Light2D" parent="."]
+texture = ExtResource( 11 )
+texture_scale = 1.49
+color = Color( 0.533333, 0.215686, 0.215686, 1 )
+energy = 1.78
+shadow_enabled = true
+shadow_buffer_size = 2458
 [connection signal="pressed" from="CanvasLayer/Pause/VBoxContainer/Resume" to="CanvasLayer/Pause" method="_on_Resume_pressed"]
 [connection signal="pressed" from="CanvasLayer/Pause/VBoxContainer/Exit" to="CanvasLayer/Pause" method="_on_Exit_pressed"]
 [connection signal="pressed" from="CanvasLayer/Pause/CheckBox" to="CanvasLayer/Pause" method="_on_CheckBox_pressed"]

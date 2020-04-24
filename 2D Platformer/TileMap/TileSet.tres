@@ -1,4 +1,28 @@
-[gd_resource type="TileSet" load_steps=43 format=2]
+[gd_resource type="TileSet" load_steps=51 format=2]
+
+[sub_resource type="OccluderPolygon2D" id=43]
+polygon = PoolVector2Array( 32, 32, 0, 32, 0, 0, 32, 0 )
+
+[sub_resource type="OccluderPolygon2D" id=44]
+polygon = PoolVector2Array( 32, 32, 1.00089, 32, 1.00089, 0, 32, 0 )
+
+[sub_resource type="OccluderPolygon2D" id=45]
+polygon = PoolVector2Array( 32, 32, 0, 32, 0, 0, 32, 0 )
+
+[sub_resource type="OccluderPolygon2D" id=46]
+polygon = PoolVector2Array( 32, 32, 0, 32, 0, 0, 32, 0 )
+
+[sub_resource type="OccluderPolygon2D" id=47]
+polygon = PoolVector2Array( 32, 32, 0, 32, 0, 0, 32, 0 )
+
+[sub_resource type="OccluderPolygon2D" id=48]
+polygon = PoolVector2Array( 32, 32, 0.0956726, 32, 0.0956726, 1.80466, 32, 1.80466 )
+
+[sub_resource type="OccluderPolygon2D" id=49]
+polygon = PoolVector2Array( 32, 32, 0, 32, 0, 0, 32, 0 )
+
+[sub_resource type="OccluderPolygon2D" id=50]
+polygon = PoolVector2Array( 32, 32, 0, 32, 0, 0, 32, 0 )
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
@@ -138,7 +162,7 @@ load_path = "res://.import/tileset.png-6644405596c5940c5a9132977c4067e1.stex"
 9/autotile/icon_coordinate = Vector2( 1, 1 )
 9/autotile/tile_size = Vector2( 32, 32 )
 9/autotile/spacing = 0
-9/autotile/occluder_map = [  ]
+9/autotile/occluder_map = [ Vector2( 0, 0 ), SubResource( 43 ), Vector2( 0, 1 ), SubResource( 44 ), Vector2( 0, 2 ), SubResource( 45 ), Vector2( 1, 0 ), SubResource( 46 ), Vector2( 1, 2 ), SubResource( 47 ), Vector2( 2, 0 ), SubResource( 48 ), Vector2( 2, 1 ), SubResource( 49 ), Vector2( 2, 2 ), SubResource( 50 ) ]
 9/autotile/navpoly_map = [  ]
 9/autotile/priority_map = [  ]
 9/autotile/z_index_map = [  ]
