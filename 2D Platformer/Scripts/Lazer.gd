@@ -1,62 +1,33 @@
 extends Node2D
-# Export: Makes a variable which can be edited/ placed in the inspector for the scene
-export(String, FILE, "*.tscn") var world_scene
-var activeTime =5
-var disabledTime =3
-var timer = null
-var enabled = true
 
-func _ready():
-	lazerTimerActive()
-	pass
+var lazerOn = true
+var repitions = 0  
+
 
 func _physics_process(delta):
+	var currentAnimFrame = $AnimatedSprite.get_frame()
 	
-	if enabled == true:
+	if currentAnimFrame == 15 && $AnimatedSprite.get_animation() == "Charging":
+		$AnimatedSprite.play("default")
 		$Area2D.set_process(true)
-		$AnimatedSprite.show()
+		lazerOn = true
+		repitions = 0
+	
+	if currentAnimFrame == 3 && $AnimatedSprite.get_animation() == "default":
+		repitions += 1
+		if repitions > 40:
+			lazerOn = false
+			$Area2D.set_process(false)
+			$AnimatedSprite.play("Charging")
+			
+	if lazerOn == true:
 		if($AudioStreamPlayer2D.playing == false):
 			$AudioStreamPlayer2D.play(true)
-	else:
+	else: 
 		$AudioStreamPlayer2D.stop()
-		$Area2D.set_process(false)
-		$AnimatedSprite.hide()
-		
-	
-	
+
 	var bodies = $Area2D.get_overlapping_bodies()
 	for body in bodies:
-		if body.name == "Player" && enabled == true:
+		if body.name == "Player" && lazerOn == true:
 			get_tree().reload_current_scene()
 	pass
-
-
-func lazerTimerActive ():
-	timer = Timer.new()
-	timer.set_one_shot(true)
-	timer.set_wait_time(activeTime)
-	timer.connect("timeout", self, "onTimeoutCompleteActive")
-	add_child(timer)
-	timer.start()
-	return
-	
-func onTimeoutCompleteActive():
-	enabled = false
-	lazerTimerDisabled()
-	return
-	
-func lazerTimerDisabled():
-	timer = Timer.new()
-	timer.set_one_shot(true)
-	timer.set_wait_time(disabledTime)
-	timer.connect("timeout", self, "onTimeoutCompleteDisabled")
-	add_child(timer)
-	timer.start()
-	return
-
-func onTimeoutCompleteDisabled():
-	enabled = true
-	lazerTimerActive()
-	return
-	
-

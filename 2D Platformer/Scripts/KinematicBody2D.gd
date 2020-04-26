@@ -18,6 +18,7 @@ var delayTimeJump = 0.05
 var isSprinting = null
 var isInMotion = null
 
+
 func _physics_process(delta):
 	movement()
 	if Input.is_action_just_pressed("Restart"):
@@ -152,7 +153,6 @@ func delayTimer(timeToWait, functionName):
 
 func onTimeoutCompleteJump():
 	canJump = false
-
 
 func onTimeoutCompleteWallJump():
 	canWallJump = false
