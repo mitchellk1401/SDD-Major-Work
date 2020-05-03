@@ -1,0 +1,102 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scenes/ObjectScenes/MusicSliders.gd" type="Script" id=1]
+
+[node name="MusicSliders" type="Control"]
+margin_left = 7.0
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Master" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSliderMaster" type="HSlider" parent="Master"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 3.0
+margin_top = 200.0
+margin_right = 163.0
+margin_bottom = 216.0
+min_value = -24.0
+max_value = 0.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Master"]
+margin_top = 220.0
+margin_right = 65.0
+margin_bottom = 241.0
+text = "Master"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Music" type="Control" parent="."]
+margin_top = 40.0
+margin_right = 40.0
+margin_bottom = 80.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSliderMusic" type="HSlider" parent="Music"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = 200.0
+margin_right = 160.0
+margin_bottom = 216.0
+min_value = -24.0
+max_value = 0.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Music"]
+margin_top = 220.0
+margin_right = 65.0
+margin_bottom = 241.0
+text = "Music"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SFX" type="Control" parent="."]
+margin_top = 80.0
+margin_right = 40.0
+margin_bottom = 120.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSliderSFX" type="HSlider" parent="SFX"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = 200.0
+margin_right = 160.0
+margin_bottom = 216.0
+min_value = -24.0
+max_value = 0.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="SFX"]
+margin_top = 220.0
+margin_right = 65.0
+margin_bottom = 241.0
+text = "SFX"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="value_changed" from="Master/HSliderMaster" to="." method="_on_HSliderMaster_value_changed"]
+[connection signal="value_changed" from="Music/HSliderMusic" to="." method="_on_HSliderMusic_value_changed"]
+[connection signal="value_changed" from="SFX/HSliderSFX" to="." method="_on_HSliderSFX_value_changed"]
