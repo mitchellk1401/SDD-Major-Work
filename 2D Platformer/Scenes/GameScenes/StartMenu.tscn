@@ -22,6 +22,7 @@ __meta__ = {
 }
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
+pause_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
 __meta__ = {
@@ -99,6 +100,9 @@ __meta__ = {
 margin_left = 7.0
 margin_right = 40.0
 margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Master" type="Control" parent="MusicSliders"]
 margin_right = 40.0
@@ -110,11 +114,13 @@ __meta__ = {
 [node name="HSliderMaster" type="HSlider" parent="MusicSliders/Master"]
 anchor_top = 1.0
 anchor_bottom = 1.0
+margin_left = 3.0
 margin_top = 200.0
-margin_right = 160.0
+margin_right = 163.0
 margin_bottom = 216.0
 min_value = -24.0
 max_value = 0.0
+step = 1.0
 __meta__ = {
 "_edit_use_anchors_": false
 }

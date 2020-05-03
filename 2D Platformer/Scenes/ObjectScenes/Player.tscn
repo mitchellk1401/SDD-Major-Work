@@ -19,19 +19,9 @@
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 3 ), ExtResource( 2 ), ExtResource( 4 ), ExtResource( 5 ) ],
-"loop": true,
-"name": "Run",
-"speed": 10.0
-}, {
 "frames": [ ExtResource( 7 ) ],
 "loop": true,
 "name": "Fall",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 8 ) ],
-"loop": true,
-"name": "Jump",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 6 ) ],
@@ -43,6 +33,16 @@ animations = [ {
 "loop": true,
 "name": "Idle",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 8 ) ],
+"loop": true,
+"name": "Jump",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ), ExtResource( 2 ), ExtResource( 4 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "Run",
+"speed": 10.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
@@ -129,14 +129,20 @@ __meta__ = {
 }
 
 [node name="Resume" type="Button" parent="CanvasLayer/Pause/VBoxContainer"]
-margin_right = 105.0
+margin_right = 131.0
 margin_bottom = 27.0
 text = "Resume Game"
 
-[node name="Exit" type="Button" parent="CanvasLayer/Pause/VBoxContainer"]
+[node name="RtoMenu" type="Button" parent="CanvasLayer/Pause/VBoxContainer"]
 margin_top = 31.0
-margin_right = 105.0
+margin_right = 131.0
 margin_bottom = 58.0
+text = "Return To Menu"
+
+[node name="Exit" type="Button" parent="CanvasLayer/Pause/VBoxContainer"]
+margin_top = 62.0
+margin_right = 131.0
+margin_bottom = 89.0
 text = "Exit Game"
 
 [node name="CheckBox" type="CheckBox" parent="CanvasLayer/Pause"]
@@ -178,5 +184,6 @@ position = Vector2( 0, -11 )
 enabled = true
 cast_to = Vector2( -7, 0 )
 [connection signal="pressed" from="CanvasLayer/Pause/VBoxContainer/Resume" to="CanvasLayer/Pause" method="_on_Resume_pressed"]
+[connection signal="pressed" from="CanvasLayer/Pause/VBoxContainer/RtoMenu" to="CanvasLayer/Pause" method="_on_RtoMenu_pressed"]
 [connection signal="pressed" from="CanvasLayer/Pause/VBoxContainer/Exit" to="CanvasLayer/Pause" method="_on_Exit_pressed"]
 [connection signal="pressed" from="CanvasLayer/Pause/CheckBox" to="CanvasLayer/Pause" method="_on_CheckBox_pressed"]
