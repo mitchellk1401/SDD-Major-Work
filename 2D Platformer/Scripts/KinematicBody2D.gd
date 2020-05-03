@@ -17,6 +17,10 @@ var canHoldWall = true
 var delayTimeJump = 0.05
 var isSprinting = null
 var isInMotion = null
+var canDash = false
+var dashing = false
+var dashDirection = Vector2(1,0)
+var dashTime = 0.4
 
 
 func _physics_process(delta):
@@ -27,7 +31,9 @@ func _physics_process(delta):
 	
 func  movement():
 	HorizontalMechanics()
-	motion.y += Gravity * gravityFlipped
+	dash()
+	if not dashing:
+		motion.y += Gravity * gravityFlipped
 	motion = move_and_slide(motion, FLOOR)
 	pass
 	
@@ -52,23 +58,19 @@ func HorizontalMechanics():
 		left = false
 		$Sprite.play("Run")
 		isInMotion = true
-		
-		
-		
 	elif Input.is_action_pressed("ui_left") :
 		motion.x = max(motion.x - ACCELERATION, -MAX_SPEED * Sprint)
 		$Sprite.flip_h = true
 		left = true
 		$Sprite.play("Run")
 		isInMotion = true
-		
 	else:
 		motion.x = 0	
 		$Sprite.play("Idle")	
 		isInMotion = false
 	
 		if(isSprinting == true):
-			$Sprite.speed_scale = 1.4
+			$Sprite.speed_scale = 1.4 #Speed_Scale refers to animation speed in order to match speed when the player sprints
 		else:
 			$Sprite.speed_scale = 1
 			
@@ -97,7 +99,12 @@ func JumpMechanics(left):
 	if is_on_wall() && !is_on_floor():
 		canWallJump = true
 	else: 
-		delayTimer(delayTimeJump, "onTimeoutCompleteWallJump") 
+		delayTimer(delayTimeJump, "onTimeoutCompleteWallJump")
+
+	if is_on_ceiling():
+		$Sprite.flip_v = true
+	else:
+		$Sprite.flip_v = false
 	
 	if Input.is_action_pressed("ui_up"):
 		if canJump == true:
@@ -135,12 +142,22 @@ func JumpMechanics(left):
 	if motion.y == 0 && motion.x == 0:
 		$Sprite.play("Idle")
 	
-	if is_on_ceiling():
-		$Sprite.flip_v = true
-	else:
-		$Sprite.flip_v = false
-	
-	
+func dash():
+	if is_on_floor():
+		canDash = true # recharges when player touches the floor
+	if Input.is_action_pressed("ui_right"):
+		dashDirection = Vector2(1,0)
+	if Input.is_action_pressed("ui_left"):
+		dashDirection = Vector2(-1,0)
+
+	if Input.is_action_just_pressed("dash") and canDash:
+#		motion = dashDirection.normalized() * 20000
+		motion.x = motion.x * 20
+		canDash = false
+		dashing = true 
+		delayTimer(dashTime, "onTimeoutCompleteDash")
+		dashing = false
+		
 #Create a timer than on timeout calls onTimeoutCompleteJump()
 func delayTimer(timeToWait, functionName):
 	timer = Timer.new()
@@ -157,6 +174,18 @@ func onTimeoutCompleteJump():
 func onTimeoutCompleteWallJump():
 	canWallJump = false
 
+func onTimeoutCompleteDash():
+	dashing = false
+	
+func next_to_wall():
+	return next_to_left_wall() or next_to_right_wall()
+	
+func next_to_left_wall():
+	return $Raycasts/LeftRay1.is_colliding() or $Raycasts/LeftRay2.is_colliding()
+
+func next_to_right_wall():
+	return $Raycasts/RightRay1.is_colliding() or $Raycasts/RightRay2.is_colliding()
+
 func _on_Area2D_body_shape_entered(body_id, body, body_shape, area_shape):
 	get_tree().reload_current_scene()
 	pass # Replace with function body.
@@ -170,3 +199,4 @@ func _on_UpGravity_body_entered(body):
 func _on_UpGravity_body_exited(body):
 	gravityFlipped = 1
 	pass # Replace with function body.
+

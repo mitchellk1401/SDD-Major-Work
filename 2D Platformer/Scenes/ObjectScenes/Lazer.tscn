@@ -47,7 +47,7 @@ script = ExtResource( 5 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
-frame = 2
+frame = 3
 playing = true
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -63,6 +63,7 @@ texture = ExtResource( 6 )
 stream = ExtResource( 7 )
 volume_db = -10.0
 max_distance = 600.0
+bus = "SoundFx"
 
 [node name="Light2D" type="Light2D" parent="."]
 texture = ExtResource( 8 )

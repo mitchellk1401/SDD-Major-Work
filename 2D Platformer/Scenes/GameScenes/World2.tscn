@@ -14,7 +14,7 @@
 position = Vector2( 110, 280 )
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
-position = Vector2( 30, 210 )
+position = Vector2( -290, 350 )
 
 [node name="TileMap" parent="." instance=ExtResource( 2 )]
 position = Vector2( 40, 260 )
@@ -57,7 +57,7 @@ position = Vector2( -470, 1000 )
 scale = Vector2( 10, 22 )
 
 [node name="Lazer2" parent="Obsticals" instance=ExtResource( 5 )]
-position = Vector2( -30, 1000 )
+position = Vector2( -10, 990 )
 scale = Vector2( 10, 22 )
 
 [node name="Portal" parent="Obsticals" instance=ExtResource( 7 )]

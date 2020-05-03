@@ -19,24 +19,24 @@
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 8 ) ],
-"loop": true,
-"name": "Jump",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 3 ), ExtResource( 2 ), ExtResource( 4 ), ExtResource( 5 ) ],
 "loop": true,
 "name": "Run",
 "speed": 10.0
 }, {
-"frames": [ ExtResource( 6 ) ],
-"loop": true,
-"name": "WallHold",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 7 ) ],
 "loop": true,
 "name": "Fall",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 8 ) ],
+"loop": true,
+"name": "Jump",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 6 ) ],
+"loop": true,
+"name": "WallHold",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 9 ) ],
@@ -65,11 +65,12 @@ shape = SubResource( 2 )
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2( 0, -45.664 )
 current = true
+zoom = Vector2( 1.4, 1.4 )
 
 [node name="Background" type="Sprite" parent="."]
 show_behind_parent = true
 position = Vector2( -1775, -791.667 )
-scale = Vector2( 100, 100 )
+scale = Vector2( 140, 140 )
 z_index = -25
 z_as_relative = false
 texture = ExtResource( 10 )
@@ -80,15 +81,18 @@ centered = false
 [node name="Walking" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource( 13 )
 volume_db = -22.0
+bus = "SoundFx"
 
 [node name="Sprinting" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource( 12 )
 volume_db = -22.0
+bus = "SoundFx"
 
 [node name="Jumping" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource( 16 )
 volume_db = -18.0
 pitch_scale = 0.4
+bus = "SoundFx"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -106,7 +110,7 @@ __meta__ = {
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer/Pause"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0.262745, 0.160784, 0.243137, 0.670588 )
+color = Color( 0.141176, 0.12549, 0.137255, 0.670588 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -144,12 +148,35 @@ margin_left = -24.0
 margin_top = -29.0
 
 [node name="Light2D" type="Light2D" parent="."]
+position = Vector2( 0, 8.33333 )
 texture = ExtResource( 11 )
 texture_scale = 1.49
 color = Color( 0.533333, 0.215686, 0.215686, 1 )
 energy = 1.78
 shadow_enabled = true
 shadow_buffer_size = 2458
+
+[node name="Raycasts" type="Node2D" parent="."]
+
+[node name="RightRay1" type="RayCast2D" parent="Raycasts"]
+position = Vector2( 0, -11 )
+enabled = true
+cast_to = Vector2( 7, 0 )
+
+[node name="RightRay2" type="RayCast2D" parent="Raycasts"]
+position = Vector2( 0, 7.75 )
+enabled = true
+cast_to = Vector2( 7, 0 )
+
+[node name="LeftRay1" type="RayCast2D" parent="Raycasts"]
+position = Vector2( 0, 7.75 )
+enabled = true
+cast_to = Vector2( -7, 0 )
+
+[node name="LeftRay2" type="RayCast2D" parent="Raycasts"]
+position = Vector2( 0, -11 )
+enabled = true
+cast_to = Vector2( -7, 0 )
 [connection signal="pressed" from="CanvasLayer/Pause/VBoxContainer/Resume" to="CanvasLayer/Pause" method="_on_Resume_pressed"]
 [connection signal="pressed" from="CanvasLayer/Pause/VBoxContainer/Exit" to="CanvasLayer/Pause" method="_on_Exit_pressed"]
 [connection signal="pressed" from="CanvasLayer/Pause/CheckBox" to="CanvasLayer/Pause" method="_on_CheckBox_pressed"]

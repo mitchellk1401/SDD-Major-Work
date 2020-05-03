@@ -20,10 +20,10 @@ tile_data = PoolIntArray( -262152, 9, 0, -262151, 9, 1, -262150, 9, 1, -262149, 
 position = Vector2( 1990, 920 )
 
 [node name="MovingPlatform" parent="." instance=ExtResource( 1 )]
-position = Vector2( 380, 180 )
+position = Vector2( 370, 180 )
 
 [node name="MovingPlatform2" parent="." instance=ExtResource( 1 )]
-position = Vector2( 770, 180 )
+position = Vector2( 750, 180 )
 
 [node name="MovingPlatform3" parent="." instance=ExtResource( 1 )]
 position = Vector2( 1160, 180 )
@@ -41,8 +41,8 @@ position = Vector2( 2100, 180 )
 position = Vector2( 3100, 180 )
 
 [node name="Player" parent="." instance=ExtResource( 4 )]
-position = Vector2( 30, 130 )
+position = Vector2( 110, 150 )
 
 [node name="Portal" parent="." instance=ExtResource( 6 )]
 position = Vector2( 3780, 40 )
-world_scene = "res://Scenes/GameScenes/StartMenu.tscn"
+world_scene = "res://Scenes/GameScenes/World4.tscn"
