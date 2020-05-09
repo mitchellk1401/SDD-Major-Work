@@ -26,14 +26,15 @@ __meta__ = {
 pause_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = 27.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
-margin_left = 210.0
+margin_left = 197.0
 margin_top = 84.0
-margin_right = 429.0
+margin_right = 416.0
 margin_bottom = 275.0
 
 [node name="Title" type="Label" parent="CenterContainer/VBoxContainer"]
@@ -50,7 +51,7 @@ __meta__ = {
 margin_top = 133.0
 margin_right = 219.0
 margin_bottom = 160.0
-text = "Start Game"
+text = "New Game"
 __meta__ = {
 "_edit_use_anchors_": false
 }

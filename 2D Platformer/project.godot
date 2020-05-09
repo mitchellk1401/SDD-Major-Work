@@ -19,8 +19,13 @@ config/name="2D Platformer"
 run/main_scene="res://Scenes/GameScenes/StartMenu.tscn"
 config/icon="res://Original Items/icon.png"
 
+[audio]
+
+default_bus_layout="res://Sound/default_bus_layout.tres"
+
 [autoload]
 
+SaveAndLoad="*res://Scripts/SaveAndLoad.gd"
 Music="*res://Scenes/ObjectScenes/Music.tscn"
 
 [display]

@@ -8,6 +8,7 @@ func _input(event):
 
 
 func _on_Resume_pressed():
+	SaveAndLoad.saveCurrentGameVolumes()
 	get_tree().paused = false
 	visible = false
 
@@ -15,6 +16,7 @@ func _on_Resume_pressed():
 
 
 func _on_Exit_pressed():
+	SaveAndLoad.saveCurrentGameVolumes()
 	get_tree().quit()
 	pass # Replace with function body.
 
@@ -25,6 +27,7 @@ func _on_CheckBox_pressed():
 
 
 func _on_RtoMenu_pressed():
+	SaveAndLoad.saveCurrentGameVolumes()
 	get_tree().paused = false
 	get_tree().change_scene("res://Scenes/GameScenes/StartMenu.tscn")
 	pass # Replace with function body.

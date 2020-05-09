@@ -148,11 +148,10 @@ func dash():
 	if Input.is_action_pressed("ui_right"):
 		dashDirection = Vector2(1,0)
 	if Input.is_action_pressed("ui_left"):
-		dashDirection = Vector2(-1,0)
-
+		dashDirection = Vector2(-1,0)	
+	
 	if Input.is_action_just_pressed("dash") and canDash:
-#		motion = dashDirection.normalized() * 20000
-		motion.x = motion.x * 20
+		motion = dashDirection.normalized() * 2000
 		canDash = false
 		dashing = true 
 		delayTimer(dashTime, "onTimeoutCompleteDash")
