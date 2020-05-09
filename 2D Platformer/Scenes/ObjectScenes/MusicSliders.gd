@@ -1,6 +1,7 @@
 extends Control
 
-func _ready(): # Called when scene/ script is initated  
+func _ready(): # Called when scene/ script is initated
+	SaveAndLoad.updateValues()  
 	$Master/HSliderMaster.value = SaveAndLoad.masterLevel
 	$Music/HSliderMusic.value = SaveAndLoad.musicLevel
 	$SFX/HSliderSFX.value = SaveAndLoad.musicSFXLevel

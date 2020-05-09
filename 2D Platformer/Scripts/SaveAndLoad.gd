@@ -9,14 +9,11 @@ var masterLevel = 0
 var musicLevel = 0
 var musicSFXLevel = 0
 
-func _ready():
+func updateValues():
 	loadGameValues("Volumes")
-	print(get_tree().get_current_scene().get_path())
+	level = config.get_value("Level", "Upto", level)
 	pass
 
-func _physics_process(delta):
-	#print(AudioServer.get_bus_volume_db(0))
-	pass
 	
 func saveGameValue(section, key, value):
 	config.set_value(section, key, value)
@@ -37,11 +34,8 @@ func saveCurrentGameVolumes():
 	saveGameValue("Volumes", "SFX", musicSFXLevel)
 	pass
 
-func saveCurrentLevel():
-	level = get_tree().get_current_scene().get_path()
-	saveGameValue("Level", "Upto", level)
 
-func newGame():
-	saveGameValue("Level", "Upto", "res://Scenes/GameScenes/Tutorial.tscn")
+#func newGame():
+#	saveGameValue("Level", "Upto", "res://Scenes/GameScenes/Tutorial.tscn")
 
 
