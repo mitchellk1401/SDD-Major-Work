@@ -8,9 +8,9 @@ func _physics_process(delta):
 	var music = get_node("/root/Music")
 	
 	if Input.is_action_just_pressed("ui_accept"):
-		SaveAndLoad.saveCurrentGameValues()
-		SaveAndLoad.saveGameValue("Level", "Upto", "res://Scenes/GameScenes/Tutorial.tscn")
-		get_tree().change_scene("res://Scenes/GameScenes/Tutorial.tscn")
+		var currentLevel = SaveAndLoad.level
+		SaveAndLoad.saveCurrentGameVolumes()
+		get_tree().change_scene(currentLevel)
 		music.play(true)
 		
 	else:
