@@ -38,5 +38,6 @@ func _on_CheckBox_pressed():
 
 func _on_ResumeGameButton_pressed():
 	var currentLevel = SaveAndLoad.level
+	SaveAndLoad.saveCurrentGameVolumes()
 	get_tree().change_scene(currentLevel)
 	pass # Replace with function body.
