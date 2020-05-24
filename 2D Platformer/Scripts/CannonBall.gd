@@ -13,9 +13,9 @@ func _ready():
 	rotationCannon = cannon.get_rotation_degrees()
 	rotationCannon = int(round(rotationCannon)) # Small Chance the godot engine sets the variable as a float so make it a rounded int to avoid errors
 	
-	#TESTING
-	cannonSprite = get_child(0)
-	cannonSprite.set_position(-3 * direction)
+#	#TESTING
+#	cannonSprite = get_child(0)
+#	cannonSprite.set_position(-3 * direction)
 	
 		# As there is no way to change the rotation of a kinematic body, If statements are currently the best option
 	if rotationCannon == 0:

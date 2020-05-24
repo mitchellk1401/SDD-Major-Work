@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 const FLOOR = Vector2(0, -1)
 const ACCELERATION = 50
-const MAX_SPEED = 350
+const MAX_SPEED = 450
 const JUMP_HEIGHT = -325
 var Sprint = 1
 var Gravity = 10
@@ -20,7 +20,7 @@ var isInMotion = null
 var canDash = false
 var dashing = false
 var dashDirection = Vector2(1,0)
-var dashTime = 0.4
+var dashTime = 10
 
 
 func _physics_process(delta):
@@ -31,9 +31,8 @@ func _physics_process(delta):
 	
 func  movement():
 	HorizontalMechanics()
-	dash()
-	if not dashing:
-		motion.y += Gravity * gravityFlipped
+
+	motion.y += Gravity * gravityFlipped
 	motion = move_and_slide(motion, FLOOR)
 	pass
 	
@@ -88,6 +87,7 @@ func HorizontalMechanics():
 		$SFX/Walking.stop()
 	
 	JumpMechanics(left)
+	particleController(left)
 	
 # Jump Mechanics controls Jumping and Wall Jumping 
 func JumpMechanics(left):
@@ -120,11 +120,11 @@ func JumpMechanics(left):
 		if Input.is_action_just_pressed("ui_up"):
 			if($SFX/Jumping.playing == false):
 				$SFX/Jumping.play()
-			motion.y = JUMP_HEIGHT * 1.4
+			motion.y = JUMP_HEIGHT * 1.5
 			if left == true:
-				motion.x = wallPush * 0.8
+				motion.x = wallPush * 1.3
 			else:
-				motion.x = -wallPush * 0.8
+				motion.x = -wallPush * 1.3
 	else:
 		if motion.y > 0:
 			$Sprite.play("Jump")	
@@ -142,21 +142,24 @@ func JumpMechanics(left):
 	if motion.y == 0 && motion.x == 0:
 		$Sprite.play("Idle")
 	
-func dash():
-	if is_on_floor():
-		canDash = true # recharges when player touches the floor
-	if Input.is_action_pressed("ui_right"):
-		dashDirection = Vector2(1,0)
-	if Input.is_action_pressed("ui_left"):
-		dashDirection = Vector2(-1,0)	
+func particleController(left):
+	var moveParticle = $ParticleMove
+	var airParticle = $ParticleInAir
 	
-	if Input.is_action_just_pressed("dash") and canDash:
-		motion = dashDirection.normalized() * 2000
-		canDash = false
-		dashing = true 
-		delayTimer(dashTime, "onTimeoutCompleteDash")
-		dashing = false
-		
+	if abs(motion.x) > 0:
+		moveParticle.emitting = true
+	else:
+		moveParticle.emitting = false
+	if abs(motion.y) > 0 && !is_on_floor() && !is_on_ceiling():
+		airParticle.emitting = true
+	else:
+		airParticle.emitting = false
+	
+	if left == true:
+		moveParticle.scale.x = 1
+	else:
+		moveParticle.scale.x = -1
+
 #Create a timer than on timeout calls onTimeoutCompleteJump()
 func delayTimer(timeToWait, functionName):
 	timer = Timer.new()
@@ -173,8 +176,6 @@ func onTimeoutCompleteJump():
 func onTimeoutCompleteWallJump():
 	canWallJump = false
 
-func onTimeoutCompleteDash():
-	dashing = false
 	
 func next_to_wall():
 	return next_to_left_wall() or next_to_right_wall()
@@ -191,7 +192,7 @@ func _on_Area2D_body_shape_entered(body_id, body, body_shape, area_shape):
 
 func _on_UpGravity_body_entered(body):
 	if body.get_name() == "Player":
-		gravityFlipped = -1
+		gravityFlipped = -3
 		
 	pass # Replace with function body.
 

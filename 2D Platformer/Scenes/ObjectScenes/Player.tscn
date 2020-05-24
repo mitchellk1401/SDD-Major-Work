@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Scripts/KinematicBody2D.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/PlayerM/Player4.png" type="Texture" id=2]
@@ -20,15 +20,20 @@
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 3 ), ExtResource( 2 ), ExtResource( 4 ), ExtResource( 5 ) ],
-"loop": true,
-"name": "Run",
-"speed": 10.0
-}, {
 "frames": [ ExtResource( 8 ) ],
 "loop": true,
 "name": "Jump",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 6 ) ],
+"loop": true,
+"name": "WallHold",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ), ExtResource( 2 ), ExtResource( 4 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "Run",
+"speed": 10.0
 }, {
 "frames": [ ExtResource( 9 ) ],
 "loop": true,
@@ -39,15 +44,17 @@ animations = [ {
 "loop": true,
 "name": "Fall",
 "speed": 5.0
-}, {
-"frames": [ ExtResource( 6 ) ],
-"loop": true,
-"name": "WallHold",
-"speed": 5.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 10, 14.27 )
+
+[sub_resource type="ParticlesMaterial" id=3]
+flag_disable_z = true
+gravity = Vector3( 0, 10, 0 )
+initial_velocity = 350.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
 
 [node name="Player" type="KinematicBody2D"]
 scale = Vector2( 1.2, 1.2 )
@@ -60,7 +67,7 @@ animation = "Idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 0.43 )
-scale = Vector2( 0.703, 1.053 )
+scale = Vector2( 0.609, 0.972 )
 shape = SubResource( 2 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -166,6 +173,7 @@ shadow_enabled = true
 shadow_buffer_size = 2458
 
 [node name="Raycasts" type="Node2D" parent="."]
+visible = false
 
 [node name="RightRay1" type="RayCast2D" parent="Raycasts"]
 position = Vector2( 0, -11 )
@@ -186,6 +194,19 @@ cast_to = Vector2( -7, 0 )
 position = Vector2( 0, -11 )
 enabled = true
 cast_to = Vector2( -7, 0 )
+
+[node name="ParticleMove" type="Particles2D" parent="."]
+position = Vector2( -1.354, 13.693 )
+amount = 3
+lifetime = 0.1
+process_material = SubResource( 3 )
+
+[node name="ParticleInAir" type="Particles2D" parent="."]
+position = Vector2( -1.354, 13.693 )
+rotation = 1.5708
+amount = 3
+lifetime = 0.1
+process_material = SubResource( 3 )
 [connection signal="pressed" from="CanvasLayer/Pause/VBoxContainer/Resume" to="CanvasLayer/Pause" method="_on_Resume_pressed"]
 [connection signal="pressed" from="CanvasLayer/Pause/VBoxContainer/RtoMenu" to="CanvasLayer/Pause" method="_on_RtoMenu_pressed"]
 [connection signal="pressed" from="CanvasLayer/Pause/VBoxContainer/Exit" to="CanvasLayer/Pause" method="_on_Exit_pressed"]

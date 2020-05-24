@@ -39,9 +39,9 @@ margin_left = -363.156
 margin_top = -75.789
 margin_right = -144.156
 margin_bottom = -1.789
-text = "To Move the Character Press The WASD Or The Arrow Keys.
+text = "Use WASD To Move
 
-You Can Jump By Pressing Space"
+Press Space to Jump"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -58,33 +58,12 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="LabelsTutorial"]
-margin_left = 390.523
-margin_top = -74.7364
-margin_right = 609.523
-margin_bottom = -0.736389
-text = "You Can Jump Higher By Holding The Jump Key For Longer Or Release It For A Shorter Jump"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="RichTextLabel3" type="RichTextLabel" parent="LabelsTutorial"]
-margin_left = 831.573
-margin_top = -74.7364
-margin_right = 1050.57
-margin_bottom = -0.736389
-text = "If You Use The Highest Jump You Will No Longer Be Able To Jump That High Until You Come To A Stop"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="RichTextLabel4" type="RichTextLabel" parent="LabelsTutorial"]
-margin_left = 1573.38
-margin_top = -122.553
-margin_right = 1792.38
-margin_bottom = -48.5533
-text = "Now Your Going To Learn The Most Basic Form Of Wall Jumping. 
-"
+margin_left = 400.0
+margin_top = -80.0
+margin_right = 618.997
+margin_bottom = -6.0
+text = "You Can Press R To Restart"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -94,7 +73,7 @@ margin_left = 1931.0
 margin_top = -134.0
 margin_right = 2200.0
 margin_bottom = -20.0
-text = "When You Are Touching A Wall, You Are In A Climbing State. This Means That If You Press Space You Push Off The Wall   You Can Make It Back To The Wall In Time In Order To Scale It. Give It A Go"
+text = "You Can Wall Jump By Applying Force To The Wall"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -104,7 +83,7 @@ margin_left = 2100.0
 margin_top = -620.0
 margin_right = 2320.0
 margin_bottom = -520.0
-text = "This Is A Lazer, They Are Set On A Timer. If You Run Into The Lazer You Will Be Sent Back To The begininng.  Also Look Out For The Cannons ;)"
+text = "Lazer's are bad Don't Get Hit.  Also Look Out For The Cannons ;)"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -114,7 +93,7 @@ margin_left = 1180.0
 margin_top = -640.0
 margin_right = 1416.0
 margin_bottom = -420.0
-text = "When Entering The Arrows, The Gravity Become Flipped. Use This To Your Advantage. Also When You Are Touching The Roof You Can Pressed The Down Arrow Or S To Jump Off, Remember This
+text = "White Arrows Flip The Gravity. Press S To Jump Down
 
 The Green Arrows Will Guide You Closer Towards The Portal"
 __meta__ = {
@@ -122,22 +101,22 @@ __meta__ = {
 }
 
 [node name="RichTextLabel8" type="RichTextLabel" parent="LabelsTutorial"]
-margin_left = 340.0
-margin_top = -580.0
-margin_right = 559.0
-margin_bottom = -506.0
-text = "Entering The Portal Will Take You To The First Level. Good Luck And You Can Always Figure Out Something New"
+margin_left = 220.0
+margin_top = -570.0
+margin_right = 439.0
+margin_bottom = -496.0
+text = "Have Fun :)"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Lazer" parent="." instance=ExtResource( 6 )]
 show_behind_parent = true
-position = Vector2( 2016.05, -530.777 )
+position = Vector2( 2010, -530 )
 scale = Vector2( 8, 9 )
 
 [node name="UpGravity" parent="." instance=ExtResource( 5 )]
-position = Vector2( 979.179, -513.202 )
+position = Vector2( 980, -540 )
 scale = Vector2( 7, 7 )
 
 [node name="Portal" parent="." instance=ExtResource( 4 )]
