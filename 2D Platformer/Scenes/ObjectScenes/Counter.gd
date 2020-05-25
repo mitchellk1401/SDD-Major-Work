@@ -1,20 +1,20 @@
 extends RichTextLabel
 
-var msTime
-var seconds = 0
-var mins = 0 
+var time = 0
+var timeMult = 1.0
+var paused = false
+var mins = 0
 
+func _ready():
+	set_process(true)
 
-func _physics_process(delta):
-	msTime = OS.get_ticks_msec() / 1000
-	seconds = msTime
-	
-	if seconds > 60:
-		mins += 1
-		seconds = OS.get_ticks_msec() / 1000 
+func _process(delta):
+	if !paused:
+		if time < 60:
+			time += stepify(delta * 1, 0.01)
+		else:
+			mins += 1
+			time = 0
 		
-	
-	text = String(mins + seconds)
-	
-	pass
-	
+		
+	text = String(mins) + " : "+ String(time)

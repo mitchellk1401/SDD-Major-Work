@@ -167,10 +167,10 @@ margin_top = -29.0
 [node name="Counter" type="RichTextLabel" parent="CanvasLayer"]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -69.0
-margin_bottom = 40.0
-text = "Counter
-"
+margin_left = -70.0
+margin_top = 20.0
+margin_right = -1.0
+margin_bottom = 60.0
 script = ExtResource( 18 )
 __meta__ = {
 "_edit_use_anchors_": false
