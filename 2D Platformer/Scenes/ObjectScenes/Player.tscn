@@ -17,7 +17,7 @@
 [ext_resource path="res://Scenes/GameScenes/Theme.tres" type="Theme" id=15]
 [ext_resource path="res://Sound/FX/jump_01.wav" type="AudioStream" id=16]
 [ext_resource path="res://Scenes/ObjectScenes/MusicSliders.tscn" type="PackedScene" id=17]
-[ext_resource path="res://Scenes/ObjectScenes/Counter.gd" type="Script" id=18]
+[ext_resource path="res://Scenes/ObjectScenes/Counter.tscn" type="PackedScene" id=18]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -26,25 +26,25 @@ animations = [ {
 "name": "Jump",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 7 ) ],
-"loop": true,
-"name": "Fall",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 6 ) ],
-"loop": true,
-"name": "WallHold",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 9 ) ],
 "loop": true,
 "name": "Idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 7 ) ],
+"loop": true,
+"name": "Fall",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 3 ), ExtResource( 2 ), ExtResource( 4 ), ExtResource( 5 ) ],
 "loop": true,
 "name": "Run",
 "speed": 10.0
+}, {
+"frames": [ ExtResource( 6 ) ],
+"loop": true,
+"name": "WallHold",
+"speed": 5.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
@@ -164,17 +164,7 @@ margin_top = -29.0
 
 [node name="MusicSliders" parent="CanvasLayer/Pause" instance=ExtResource( 17 )]
 
-[node name="Counter" type="RichTextLabel" parent="CanvasLayer"]
-anchor_left = 1.0
-anchor_right = 1.0
-margin_left = -70.0
-margin_top = 20.0
-margin_right = -1.0
-margin_bottom = 60.0
-script = ExtResource( 18 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Counter" parent="CanvasLayer" instance=ExtResource( 18 )]
 
 [node name="Light2D" type="Light2D" parent="."]
 position = Vector2( 0, 8.33333 )

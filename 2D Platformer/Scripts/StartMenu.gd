@@ -1,8 +1,13 @@
 extends Control
 
+var timerRunning
+
+
 func _ready():
 	var saveAndLoad = get_node("/root/SaveAndLoad")
 	saveAndLoad.updateValues()
+	timerRunning = get_node("/root/Counter")
+	timerRunning.gameRunning = false
 	
 func _physics_process(delta):
 	var music = get_node("/root/Music")
@@ -12,6 +17,7 @@ func _physics_process(delta):
 		SaveAndLoad.saveCurrentGameVolumes()
 		get_tree().change_scene(currentLevel)
 		music.play(true)
+		timerRunning.gameRunning = true
 		
 	else:
 		music.play(false)
@@ -21,10 +27,20 @@ func _on_StartGameButton_pressed():
 	var music = get_node("/root/Music")
 	SaveAndLoad.saveCurrentGameVolumes()
 	SaveAndLoad.saveGameValue("Level", "Upto", "res://Scenes/GameScenes/Tutorial.tscn")
+	timerRunning.gameRunning = true
 	get_tree().change_scene("res://Scenes/GameScenes/Tutorial.tscn")
+
 	pass 
 
-
+func _on_ResumeGameButton_pressed():
+	var currentLevel = SaveAndLoad.level
+	SaveAndLoad.saveCurrentGameVolumes()
+	timerRunning.gameRunning = true
+	get_tree().change_scene(currentLevel)
+	
+	pass # Replace with function body.
+	
+	
 func _on_QuitGameButton2_pressed():
 	SaveAndLoad.saveCurrentGameVolumes()
 	get_tree().quit()
@@ -36,8 +52,4 @@ func _on_CheckBox_pressed():
 	pass 
 
 
-func _on_ResumeGameButton_pressed():
-	var currentLevel = SaveAndLoad.level
-	SaveAndLoad.saveCurrentGameVolumes()
-	get_tree().change_scene(currentLevel)
-	pass # Replace with function body.
+
