@@ -11,6 +11,7 @@ func _physics_process(delta):
 		if body.name == "Player":
 			SaveAndLoad.saveGameValue("Level", "Upto", world_scene)
 			get_tree().change_scene(world_scene)
+			saveAndLoad.saveCurrentTime()
 	
 
 	pass

@@ -27,7 +27,7 @@ default_bus_layout="res://Sound/default_bus_layout.tres"
 
 SaveAndLoad="*res://Scripts/SaveAndLoad.gd"
 Music="*res://Scenes/ObjectScenes/Music.tscn"
-Counter="*res://Scenes/ObjectScenes/Counter.tscn"
+Counter="*res://Scripts/Counter.gd"
 
 [display]
 

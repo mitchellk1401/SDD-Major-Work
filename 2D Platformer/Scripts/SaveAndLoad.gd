@@ -34,7 +34,21 @@ func saveCurrentGameVolumes():
 	saveGameValue("Volumes", "SFX", musicSFXLevel)
 	pass
 
+func saveCurrentTime():
+	var gameTime = get_node("/root/Counter")
+	saveGameValue("GameTime", "Seconds", gameTime.time)
+	saveGameValue("GameTime", "Minutes", gameTime.mins)
 
+func loadTimes():
+	var gameTime = get_node("/root/Counter")
+	gameTime.time = config.get_value("GameTime", "Seconds", gameTime.time) 
+	gameTime.mins = config.get_value("GameTime", "Minutes", gameTime.time) 
+
+func newTimes():
+	var gameTime = get_node("/root/Counter")
+	gameTime.time = 0
+	gameTime.mins = 0
+	
 #func newGame():
 #	saveGameValue("Level", "Upto", "res://Scenes/GameScenes/Tutorial.tscn")
 
