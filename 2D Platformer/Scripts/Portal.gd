@@ -4,6 +4,9 @@ extends Area2D
 export(String, FILE, "*.tscn") var world_scene
 
 onready var saveAndLoad = get_node("/root/SaveAndLoad")
+onready var timerRunning = get_node("/root/Counter")
+	
+
 
 func _physics_process(delta):
 	var bodies = get_overlapping_bodies()
@@ -12,6 +15,7 @@ func _physics_process(delta):
 			SaveAndLoad.saveGameValue("Level", "Upto", world_scene)
 			get_tree().change_scene(world_scene)
 			saveAndLoad.saveCurrentTime()
+			timerRunning.gameRunning = true
 	
 
 	pass

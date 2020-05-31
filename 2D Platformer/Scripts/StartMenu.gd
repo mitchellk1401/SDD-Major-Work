@@ -28,7 +28,6 @@ func _on_StartGameButton_pressed():
 	var music = get_node("/root/Music")
 	SaveAndLoad.saveCurrentGameVolumes()
 	SaveAndLoad.saveGameValue("Level", "Upto", "res://Scenes/GameScenes/Tutorial.tscn")
-	timerRunning.gameRunning = true
 	get_tree().change_scene("res://Scenes/GameScenes/Tutorial.tscn")
 	SaveAndLoad.newTimes()
 
