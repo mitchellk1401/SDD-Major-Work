@@ -19,7 +19,7 @@ default_font = SubResource( 1 )
 [node name="Tutorial" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
-position = Vector2( -440, 70 )
+position = Vector2( -460, 100 )
 
 [node name="Fog" parent="." instance=ExtResource( 2 )]
 position = Vector2( -6.10889, 0.0382385 )
@@ -65,7 +65,7 @@ margin_right = 618.997
 margin_bottom = -6.0
 text = "You Can Press R To Restart,
 
-You Can Press LShift To Spring"
+You Can Press LShift To Sprint"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -95,7 +95,7 @@ margin_left = 1180.0
 margin_top = -640.0
 margin_right = 1416.0
 margin_bottom = -420.0
-text = "White Arrows Flip The Gravity. Press S To Jump Down
+text = "White Arrows Flip The Gravity.
 
 The Green Arrows Will Guide You Closer Towards The Portal"
 __meta__ = {
@@ -132,13 +132,21 @@ scale = Vector2( 4, 4 )
 world_scene = "res://Scenes/GameScenes/World1.tscn"
 
 [node name="arrowsGuide" type="Sprite" parent="."]
-position = Vector2( -580, -60 )
-rotation = 1.5708
+position = Vector2( 540, -480 )
+rotation = 4.71239
+scale = Vector2( 5.59376, 5.59376 )
 texture = ExtResource( 8 )
 
 [node name="arrowsGuide2" type="Sprite" parent="."]
+position = Vector2( -580, -60 )
+rotation = 1.5708
+scale = Vector2( 1.2, 1.2 )
+texture = ExtResource( 8 )
+
+[node name="arrowsGuide3" type="Sprite" parent="."]
 position = Vector2( -700, -20 )
-rotation = 4.71239
+rotation = -1.5708
+scale = Vector2( 1.2, 1.2 )
 texture = ExtResource( 8 )
 [connection signal="body_entered" from="UpGravity" to="Player" method="_on_UpGravity_body_entered"]
 [connection signal="body_exited" from="UpGravity" to="Player" method="_on_UpGravity_body_exited"]

@@ -14,7 +14,7 @@ var canWallJump = true
 var timer = null
 var delayTime = 0.2
 var canHoldWall = true
-var delayTimeJump = 0.05
+var delayTimeJump = 0.2
 var isSprinting = null
 var isInMotion = null
 var canDash = false
@@ -132,12 +132,6 @@ func JumpMechanics(left):
 			$Sprite.play("Fall")
 	if Input.is_action_just_released("ui_up") && motion.y < 0 :
 		motion.y = 0
-		# Fall Faster
-	if Input.is_action_just_pressed("ui_down"):
-		if motion.y !=0:
-			motion.y += Gravity * gravityFlipped
-		else:
-			motion.y = 350
 
 	if motion.y == 0 && motion.x == 0:
 		$Sprite.play("Idle")
@@ -192,8 +186,7 @@ func _on_Area2D_body_shape_entered(body_id, body, body_shape, area_shape):
 
 func _on_UpGravity_body_entered(body):
 	if body.get_name() == "Player":
-		gravityFlipped = -3
-		
+		gravityFlipped = -2.5
 	pass # Replace with function body.
 
 func _on_UpGravity_body_exited(body):

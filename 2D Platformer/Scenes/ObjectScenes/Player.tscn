@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://Scripts/KinematicBody2D.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/PlayerM/Player4.png" type="Texture" id=2]
@@ -26,11 +26,6 @@ animations = [ {
 "name": "Jump",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 3 ), ExtResource( 2 ), ExtResource( 4 ), ExtResource( 5 ) ],
-"loop": true,
-"name": "Run",
-"speed": 10.0
-}, {
 "frames": [ ExtResource( 6 ) ],
 "loop": true,
 "name": "WallHold",
@@ -41,6 +36,11 @@ animations = [ {
 "name": "Idle",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 3 ), ExtResource( 2 ), ExtResource( 4 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "Run",
+"speed": 10.0
+}, {
 "frames": [ ExtResource( 7 ) ],
 "loop": true,
 "name": "Fall",
@@ -50,12 +50,19 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 10, 14.27 )
 
-[sub_resource type="ParticlesMaterial" id=3]
+[sub_resource type="Gradient" id=3]
+colors = PoolColorArray( 1, 1, 1, 0.117647, 1, 1, 1, 1 )
+
+[sub_resource type="GradientTexture" id=4]
+gradient = SubResource( 3 )
+
+[sub_resource type="ParticlesMaterial" id=5]
 flag_disable_z = true
 gravity = Vector3( 0, 10, 0 )
-initial_velocity = 350.0
+initial_velocity = 166.09
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
+color_ramp = SubResource( 4 )
 
 [node name="Player" type="KinematicBody2D"]
 scale = Vector2( 1.2, 1.2 )
@@ -179,14 +186,14 @@ shadow_buffer_size = 2458
 position = Vector2( -1.354, 13.693 )
 amount = 3
 lifetime = 0.1
-process_material = SubResource( 3 )
+process_material = SubResource( 5 )
 
 [node name="ParticleInAir" type="Particles2D" parent="."]
-position = Vector2( -0.628915, 10.1712 )
+position = Vector2( 0, 8.33333 )
 rotation = 1.5708
 amount = 3
 lifetime = 0.1
-process_material = SubResource( 3 )
+process_material = SubResource( 5 )
 [connection signal="pressed" from="CanvasLayer/Pause/VBoxContainer/Resume" to="CanvasLayer/Pause" method="_on_Resume_pressed"]
 [connection signal="pressed" from="CanvasLayer/Pause/VBoxContainer/RtoMenu" to="CanvasLayer/Pause" method="_on_RtoMenu_pressed"]
 [connection signal="pressed" from="CanvasLayer/Pause/VBoxContainer/Exit" to="CanvasLayer/Pause" method="_on_Exit_pressed"]
