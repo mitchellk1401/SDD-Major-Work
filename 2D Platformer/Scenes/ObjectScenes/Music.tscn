@@ -1,8 +1,7 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://Sound/Music/IswearIsawit.ogg" type="AudioStream" id=1]
+[ext_resource path="res://Sound/Music/GameMusic.ogg" type="AudioStream" id=1]
 
 [node name="Music" type="AudioStreamPlayer"]
 stream = ExtResource( 1 )
-volume_db = -20.0
 bus = "Music"
