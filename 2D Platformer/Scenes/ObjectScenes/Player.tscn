@@ -21,9 +21,14 @@
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 8 ) ],
+"frames": [ ExtResource( 9 ) ],
 "loop": true,
-"name": "Jump",
+"name": "Idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 7 ) ],
+"loop": true,
+"name": "Fall",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 6 ) ],
@@ -31,19 +36,14 @@ animations = [ {
 "name": "WallHold",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 9 ) ],
-"loop": true,
-"name": "Idle",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 3 ), ExtResource( 2 ), ExtResource( 4 ), ExtResource( 5 ) ],
 "loop": true,
 "name": "Run",
 "speed": 10.0
 }, {
-"frames": [ ExtResource( 7 ) ],
+"frames": [ ExtResource( 8 ) ],
 "loop": true,
-"name": "Fall",
+"name": "Jump",
 "speed": 5.0
 } ]
 
@@ -145,20 +145,20 @@ __meta__ = {
 }
 
 [node name="Resume" type="Button" parent="CanvasLayer/Pause/VBoxContainer"]
-margin_right = 131.0
-margin_bottom = 27.0
+margin_right = 119.0
+margin_bottom = 21.0
 text = "Resume Game"
 
 [node name="RtoMenu" type="Button" parent="CanvasLayer/Pause/VBoxContainer"]
-margin_top = 31.0
-margin_right = 131.0
-margin_bottom = 58.0
+margin_top = 25.0
+margin_right = 119.0
+margin_bottom = 46.0
 text = "Return To Menu"
 
 [node name="Exit" type="Button" parent="CanvasLayer/Pause/VBoxContainer"]
-margin_top = 62.0
-margin_right = 131.0
-margin_bottom = 89.0
+margin_top = 50.0
+margin_right = 119.0
+margin_bottom = 71.0
 text = "Exit Game"
 
 [node name="CheckBox" type="CheckBox" parent="CanvasLayer/Pause"]

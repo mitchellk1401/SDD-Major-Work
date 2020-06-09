@@ -15,7 +15,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="2D Platformer"
+config/name="PLAAST"
 run/main_scene="res://Scenes/GameScenes/StartMenu.tscn"
 config/icon="res://Original Items/icon.png"
 

@@ -1,12 +1,13 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Scripts/MusicSliders.gd" type="Script" id=1]
-
+[ext_resource path="res://Scenes/GameScenes/Theme.tres" type="Theme" id=2]
 
 [node name="MusicSliders" type="Control"]
 margin_left = 7.0
 margin_right = 40.0
 margin_bottom = 40.0
+theme = ExtResource( 2 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -37,6 +38,7 @@ __meta__ = {
 margin_top = 220.0
 margin_right = 65.0
 margin_bottom = 241.0
+theme = ExtResource( 2 )
 text = "Master"
 __meta__ = {
 "_edit_use_anchors_": false
