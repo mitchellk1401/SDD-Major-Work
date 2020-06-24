@@ -14,13 +14,13 @@ func updateValues():
 	level = config.get_value("Level", "Upto", level)
 	pass
 
-	
+# Saves game value which is broken into a section and a key	
 func saveGameValue(section, key, value):
 	config.set_value(section, key, value)
 	config.save(savePath)
 	
 func loadGameValues(section):
-	masterLevel = config.get_value(section, "Master", masterLevel)
+	masterLevel = config.get_value(section, "Master", masterLevel) # Gets value from defined arguments
 	musicLevel = config.get_value(section, "Music", musicLevel)
 	musicSFXLevel = config.get_value(section, "SFX", musicSFXLevel)
 	return

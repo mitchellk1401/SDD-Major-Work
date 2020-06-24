@@ -10,7 +10,7 @@ var time
 var mins
 
 func _physics_process(delta):
-	time =  count.time
+	time = count.time
 	mins = count.mins
 	
 	text = String(mins) + ":"+ String(time)

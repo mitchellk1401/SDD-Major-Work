@@ -13,11 +13,8 @@ func _ready():
 	rotationCannon = cannon.get_rotation_degrees()
 	rotationCannon = int(round(rotationCannon)) # Small Chance the godot engine sets the variable as a float so make it a rounded int to avoid errors
 	
-#	#TESTING
-#	cannonSprite = get_child(0)
-#	cannonSprite.set_position(-3 * direction)
 	
-		# As there is no way to change the rotation of a kinematic body, If statements are currently the best option
+		# Based on the rotation in the scene view the projectiles vector is updated in order to shoot in the correct direction
 	if rotationCannon == 0:
 		direction.x = projSpeed
 		direction.y = 0	
@@ -48,10 +45,10 @@ func deleteDelay(): # Allows Player to be noticed before deleting
 	timer = Timer.new()
 	timer.set_one_shot(true)
 	timer.set_wait_time(0.05)
-	timer.connect("timeout", self, "Delete")
+	timer.connect("timeout", self, "Delete") # When timer timesout i.e reaches zero calles function in 3rd parameter
 	add_child(timer)
 	timer.start()
 	return  
 
 func Delete():
-	queue_free()
+	queue_free() #Removes game object without causing warnings

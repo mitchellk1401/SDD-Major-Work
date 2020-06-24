@@ -3,9 +3,10 @@ extends Control
 onready var saveAndLoad = get_node("/root/SaveAndLoad")
 
 func _input(event):
+	# When pause is presses it shows the UI and saves the current time, 
 	if event.is_action_pressed("pause"):
 		var pause_state = not get_tree().paused
-		get_tree().paused = pause_state
+		get_tree().paused = pause_state # Pauses the physics process of the game, pause menu doesn't inherit the physics process hence will run even with the physics processed paused
 		visible = pause_state
 		saveAndLoad.saveCurrentTime()
 

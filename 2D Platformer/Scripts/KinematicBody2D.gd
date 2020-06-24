@@ -102,7 +102,7 @@ func JumpMechanics(left):
 		delayTimer(delayTimeJump, "onTimeoutCompleteWallJump")
 
 	if is_on_ceiling():
-		$Sprite.flip_v = true
+		$Sprite.flip_v = true #Flips sprite vertically 
 	else:
 		$Sprite.flip_v = false
 	
@@ -135,7 +135,8 @@ func JumpMechanics(left):
 
 	if motion.y == 0 && motion.x == 0:
 		$Sprite.play("Idle")
-	
+
+# Controls the particle takes left as a parameter in order for the particles to emit in the correct orientation
 func particleController(left):
 	var moveParticle = $ParticleMove
 	var airParticle = $ParticleInAir
@@ -159,7 +160,7 @@ func delayTimer(timeToWait, functionName):
 	timer = Timer.new()
 	timer.set_one_shot(true)
 	timer.set_wait_time(timeToWait)
-	timer.connect("timeout", self, functionName)
+	timer.connect("timeout", self, functionName) # When timer timesout i.e reaches zero calles function in 3rd parameter
 	add_child(timer)
 	timer.start()
 	return  
@@ -170,27 +171,28 @@ func onTimeoutCompleteJump():
 func onTimeoutCompleteWallJump():
 	canWallJump = false
 
-	
-func next_to_wall():
-	return next_to_left_wall() or next_to_right_wall()
-	
-func next_to_left_wall():
-	return $Raycasts/LeftRay1.is_colliding() or $Raycasts/LeftRay2.is_colliding()
-
-func next_to_right_wall():
-	return $Raycasts/RightRay1.is_colliding() or $Raycasts/RightRay2.is_colliding()
-
+# When player hits obsticle reload the scene
 func _on_Area2D_body_shape_entered(body_id, body, body_shape, area_shape):
 	get_tree().reload_current_scene()
-	pass # Replace with function body.
+	pass 
 
+# Adjusts the gravity when player enters the object
 func _on_UpGravity_body_entered(body):
 	if body.get_name() == "Player":
 		gravityFlipped = -2.5
-	pass # Replace with function body.
+	pass 
 
 func _on_UpGravity_body_exited(body):
 	gravityFlipped = 1
-	pass # Replace with function body.
+	pass 
 
+	
+#func next_to_wall():
+#	return next_to_left_wall() or next_to_right_wall()
+#
+#func next_to_left_wall():
+#	return $Raycasts/LeftRay1.is_colliding() or $Raycasts/LeftRay2.is_colliding()
+#
+#func next_to_right_wall():
+#	return $Raycasts/RightRay1.is_colliding() or $Raycasts/RightRay2.is_colliding()
 

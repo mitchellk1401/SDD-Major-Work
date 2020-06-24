@@ -10,7 +10,7 @@ func _ready():
 	timerRunning.gameRunning = false
 	
 func _physics_process(delta):
-	var music = get_node("/root/Music")
+	var music = get_node("/root/Music") # Gets the music node in the autorun, in order for playback position to not reset when changing scenes
 	
 	if Input.is_action_just_pressed("ui_accept"):
 		var currentLevel = SaveAndLoad.level
@@ -25,7 +25,7 @@ func _physics_process(delta):
 
 	
 func _on_StartGameButton_pressed():
-	var music = get_node("/root/Music")
+	var music = get_node("/root/Music") 
 	SaveAndLoad.saveCurrentGameVolumes()
 	SaveAndLoad.saveGameValue("Level", "Upto", "res://Scenes/GameScenes/Tutorial.tscn")
 	get_tree().change_scene("res://Scenes/GameScenes/Tutorial.tscn")

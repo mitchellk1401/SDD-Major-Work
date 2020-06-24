@@ -6,7 +6,7 @@ func _ready(): # Called when scene/ script is initated
 	$Music/HSliderMusic.value = SaveAndLoad.musicLevel
 	$SFX/HSliderSFX.value = SaveAndLoad.musicSFXLevel
 	
-func _on_HSliderMaster_value_changed(value):
+func _on_HSliderMaster_value_changed(value): 
 	AudioServer.set_bus_volume_db(0, lerp(AudioServer.get_bus_volume_db(0), value, 0.5)) #Values being lerped in order to stop audio clipping
 	if value == -24: #Without statement the music will play at a very low level
 		AudioServer.set_bus_mute(0, true)
