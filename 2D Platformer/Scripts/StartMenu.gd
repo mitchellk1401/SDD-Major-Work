@@ -17,7 +17,7 @@ func _physics_process(delta):
 		SaveAndLoad.saveCurrentGameVolumes()
 		get_tree().change_scene(currentLevel)
 		music.play(true)
-		timerRunning.gameRunning = true
+		#timerRunning.gameRunning = true
 		SaveAndLoad.loadTimes()
 		
 	else:
@@ -36,7 +36,7 @@ func _on_StartGameButton_pressed():
 func _on_ResumeGameButton_pressed():
 	var currentLevel = SaveAndLoad.level
 	SaveAndLoad.saveCurrentGameVolumes()
-	timerRunning.gameRunning = true
+	#timerRunning.gameRunning = true
 	get_tree().change_scene(currentLevel)
 	SaveAndLoad.loadTimes()
 	

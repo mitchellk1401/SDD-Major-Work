@@ -14,10 +14,11 @@
 [ext_resource path="res://Sound/FX/yd-Sounds/steps_platform2.ogg" type="AudioStream" id=12]
 [ext_resource path="res://Sound/FX/yd-Sounds/steps_platform.ogg" type="AudioStream" id=13]
 [ext_resource path="res://Scripts/Pause.gd" type="Script" id=14]
-[ext_resource path="res://Scenes/GameScenes/Theme.tres" type="Theme" id=15]
+[ext_resource path="res://Theme/Theme.tres" type="Theme" id=15]
 [ext_resource path="res://Sound/FX/jump_01.wav" type="AudioStream" id=16]
 [ext_resource path="res://Scenes/ObjectScenes/MusicSliders.tscn" type="PackedScene" id=17]
 [ext_resource path="res://Scenes/ObjectScenes/count.tscn" type="PackedScene" id=18]
+
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {

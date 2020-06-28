@@ -195,4 +195,3 @@ func _on_UpGravity_body_exited(body):
 #
 #func next_to_right_wall():
 #	return $Raycasts/RightRay1.is_colliding() or $Raycasts/RightRay2.is_colliding()
-
