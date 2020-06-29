@@ -1,0 +1,76 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Scripts/WorldLevelInUse.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/ObjectScenes/TileMap.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/ObjectScenes/Fog.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/ObjectScenes/Boundaries.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/ObjectScenes/Player.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/ObjectScenes/Cannon.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/ObjectScenes/UpGravity.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/ObjectScenes/SpinningPlatform.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/ObjectScenes/Portal.tscn" type="PackedScene" id=9]
+
+[node name="World6" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="Boundaries" parent="." instance=ExtResource( 4 )]
+position = Vector2( 460, 790 )
+
+[node name="Player" parent="." instance=ExtResource( 5 )]
+position = Vector2( 290, -10 )
+
+[node name="Fog" parent="." instance=ExtResource( 3 )]
+position = Vector2( 290, 330 )
+
+[node name="TileMap" parent="." instance=ExtResource( 2 )]
+position = Vector2( 270, -80 )
+tile_data = PoolIntArray( -917418, 9, 4, -917417, 9, 196609, -917416, 9, 196609, -917415, 9, 196609, -917414, 9, 196609, -917413, 9, 196609, -917412, 9, 196609, -917411, 9, 196609, -917410, 9, 196609, -917409, 9, 196609, -917408, 9, 196609, -917407, 9, 196609, -917406, 9, 196609, -917405, 9, 196609, -917404, 9, 196609, -917403, 9, 196609, -917402, 9, 196609, -917401, 9, 196609, -917400, 9, 196609, -917399, 9, 196609, -917398, 9, 196610, -851882, 9, 65539, -786346, 9, 65539, -720810, 9, 65539, -655274, 9, 65539, -589738, 9, 65539, -524202, 9, 65539, -458666, 9, 65539, -393130, 9, 65539, -327627, 9, 3, -327594, 9, 65539, -262091, 9, 65539, -262058, 9, 65539, -262052, 9, 4, -262051, 9, 196609, -262050, 9, 196609, -262049, 9, 196609, -262048, 9, 196609, -262047, 9, 196609, -262046, 9, 196609, -262045, 9, 196609, -262044, 9, 196609, -262043, 9, 196609, -262042, 9, 196609, -262041, 9, 196609, -262040, 9, 196609, -262039, 9, 196610, -262011, 9, 196608, -262010, 9, 196609, -262009, 9, 196609, -262008, 9, 196609, -262007, 9, 196609, -262006, 9, 196609, -262005, 9, 196609, -262004, 9, 196610, -196555, 9, 65539, -196522, 9, 65539, -196516, 9, 65539, -131019, 9, 65539, -130986, 9, 65539, -130980, 9, 65539, -65483, 9, 65539, -65450, 9, 65539, -65444, 9, 65539, 53, 9, 65539, 86, 9, 65539, 92, 9, 65539, 65589, 9, 262148, 65590, 9, 196609, 65591, 9, 196609, 65592, 9, 196609, 65593, 9, 196609, 65594, 9, 196609, 65595, 9, 196609, 65596, 9, 196609, 65597, 9, 196609, 65598, 9, 196609, 65599, 9, 196609, 65600, 9, 196609, 65601, 9, 196609, 65602, 9, 196609, 65603, 9, 196609, 65604, 9, 196609, 65605, 9, 196609, 65606, 9, 196609, 65607, 9, 196609, 65608, 9, 196609, 65609, 9, 196609, 65610, 9, 196609, 65611, 9, 196609, 65612, 9, 196609, 65613, 9, 196609, 65614, 9, 196609, 65615, 9, 196609, 65616, 9, 7, 65622, 9, 65539, 65628, 9, 65539, 131125, 9, 65539, 131152, 9, 65539, 131158, 9, 65539, 131164, 9, 65539, 262141, 9, 0, 262142, 9, 1, 262143, 9, 1, 196608, 9, 1, 196609, 9, 1, 196610, 9, 1, 196611, 9, 2, 196661, 9, 65539, 196688, 9, 65539, 196694, 9, 65539, 196700, 9, 65539, 327677, 9, 65536, 327678, 9, 65537, 327679, 9, 65537, 262144, 9, 65537, 262145, 9, 65537, 262146, 9, 65537, 262147, 9, 131077, 262148, 9, 1, 262149, 9, 2, 262197, 9, 65539, 262224, 9, 65539, 262230, 9, 65539, 262236, 9, 65539, 393213, 9, 65536, 393214, 9, 65537, 393215, 9, 65537, 327680, 9, 65537, 327681, 9, 65537, 327682, 9, 65537, 327683, 9, 65537, 327684, 9, 65537, 327685, 9, 131077, 327686, 9, 1, 327687, 9, 2, 327733, 9, 65539, 327760, 9, 65539, 327766, 9, 65539, 327772, 9, 65539, 458749, 9, 65536, 458750, 9, 65537, 458751, 9, 65537, 393216, 9, 65537, 393217, 9, 65537, 393218, 9, 65537, 393219, 9, 65537, 393220, 9, 65537, 393221, 9, 65537, 393222, 9, 65537, 393223, 9, 131077, 393224, 9, 1, 393225, 9, 1, 393226, 9, 1, 393227, 9, 1, 393228, 9, 1, 393229, 9, 1, 393230, 9, 2, 393242, 9, 3, 393253, 9, 3, 393262, 9, 0, 393263, 9, 1, 393264, 9, 1, 393265, 9, 2, 393269, 9, 65539, 393296, 9, 65539, 393302, 9, 65539, 393308, 9, 65539, 524285, 9, 131072, 524286, 9, 131073, 524287, 9, 131073, 458752, 9, 131073, 458753, 9, 131073, 458754, 9, 131073, 458755, 9, 131073, 458756, 9, 131073, 458757, 9, 131073, 458758, 9, 131073, 458759, 9, 131073, 458760, 9, 131073, 458761, 9, 131073, 458762, 9, 131073, 458763, 9, 131073, 458764, 9, 131073, 458765, 9, 131073, 458766, 9, 131074, 458778, 9, 131075, 458789, 9, 131075, 458798, 9, 131072, 458799, 9, 131073, 458800, 9, 131073, 458801, 9, 65543, 458805, 9, 131075, 458832, 9, 65539, 458838, 9, 65539, 458844, 9, 65539, 524337, 9, 65539, 524368, 9, 65539, 524374, 9, 65539, 524380, 9, 65539, 589873, 9, 65539, 589904, 9, 65539, 589910, 9, 65539, 589916, 9, 65539, 655409, 9, 65539, 655440, 9, 65539, 655446, 9, 65539, 655452, 9, 65539, 720945, 9, 65539, 720976, 9, 65539, 720982, 9, 65539, 720988, 9, 65539, 786481, 9, 65539, 786512, 9, 65539, 786518, 9, 65539, 786524, 9, 65539, 852017, 9, 65539, 852048, 9, 65539, 852054, 9, 65539, 852060, 9, 65539, 917553, 9, 65539, 917584, 9, 65539, 917590, 9, 65539, 917596, 9, 65539, 983089, 9, 196612, 983090, 9, 196609, 983091, 9, 196609, 983092, 9, 196609, 983093, 9, 196609, 983094, 9, 196609, 983095, 9, 196609, 983096, 9, 196609, 983097, 9, 196609, 983098, 9, 196609, 983099, 9, 196609, 983100, 9, 196609, 983101, 9, 196609, 983102, 9, 196609, 983103, 9, 196609, 983104, 9, 196609, 983105, 9, 196609, 983106, 9, 196609, 983107, 9, 196609, 983108, 9, 196609, 983109, 9, 196609, 983110, 9, 196609, 983111, 9, 196609, 983112, 9, 196609, 983113, 9, 196609, 983114, 9, 196609, 983115, 9, 7, 983120, 9, 196612, 983121, 9, 196609, 983122, 9, 196609, 983123, 9, 196609, 983124, 9, 196609, 983125, 9, 196609, 983126, 9, 196615, 983132, 9, 65539, 1048651, 9, 65539, 1048668, 9, 65539, 1114187, 9, 65539, 1114204, 9, 65539, 1179723, 9, 65539, 1179740, 9, 65539, 1245259, 9, 65539, 1245276, 9, 65539, 1310795, 9, 65539, 1310812, 9, 65539, 1376331, 9, 65539, 1376348, 9, 65539, 1441867, 9, 65539, 1441884, 9, 65539, 1507403, 9, 65539, 1507420, 9, 65539, 1572939, 9, 196612, 1572940, 9, 196609, 1572941, 9, 196609, 1572942, 9, 196609, 1572943, 9, 196609, 1572944, 9, 196609, 1572945, 9, 196609, 1572946, 9, 196609, 1572947, 9, 196609, 1572948, 9, 196609, 1572949, 9, 196609, 1572950, 9, 196609, 1572951, 9, 196609, 1572952, 9, 196609, 1572953, 9, 196609, 1572954, 9, 196609, 1572955, 9, 196609, 1572956, 9, 196615 )
+
+[node name="Cannon" parent="." instance=ExtResource( 6 )]
+position = Vector2( 1960, 10 )
+rotation = 3.14159
+
+[node name="Cannon2" parent="." instance=ExtResource( 6 )]
+position = Vector2( 2200, -10 )
+rotation = 1.5708
+
+[node name="Cannon3" parent="." instance=ExtResource( 6 )]
+position = Vector2( 2420, -10 )
+rotation = 1.5708
+
+[node name="Cannon4" parent="." instance=ExtResource( 6 )]
+position = Vector2( 2750, -10 )
+rotation = 1.5708
+
+[node name="UpGravity" parent="." instance=ExtResource( 7 )]
+position = Vector2( 3150, 640 )
+
+[node name="UpGravity2" parent="." instance=ExtResource( 7 )]
+position = Vector2( 3150, 460 )
+
+[node name="UpGravity4" parent="." instance=ExtResource( 7 )]
+position = Vector2( 3160, 140 )
+
+[node name="UpGravity5" parent="." instance=ExtResource( 7 )]
+position = Vector2( 3150, -50 )
+
+[node name="UpGravity3" parent="." instance=ExtResource( 7 )]
+position = Vector2( 3150, 310 )
+
+[node name="MovingPlatform" parent="." instance=ExtResource( 8 )]
+position = Vector2( 4130, -200 )
+scale = Vector2( 12, 6 )
+
+[node name="Portal" parent="." instance=ExtResource( 9 )]
+position = Vector2( 4760, -240 )
+world_scene = "res://Scenes/GameScenes/GameFinished.tscn"
+[connection signal="body_entered" from="UpGravity" to="Player" method="_on_UpGravity_body_entered"]
+[connection signal="body_exited" from="UpGravity" to="Player" method="_on_UpGravity_body_exited"]
+[connection signal="body_entered" from="UpGravity2" to="Player" method="_on_UpGravity_body_entered"]
+[connection signal="body_exited" from="UpGravity2" to="Player" method="_on_UpGravity_body_exited"]
+[connection signal="body_entered" from="UpGravity4" to="Player" method="_on_UpGravity_body_entered"]
+[connection signal="body_exited" from="UpGravity4" to="Player" method="_on_UpGravity_body_exited"]
+[connection signal="body_entered" from="UpGravity5" to="Player" method="_on_UpGravity_body_entered"]
+[connection signal="body_exited" from="UpGravity5" to="Player" method="_on_UpGravity_body_exited"]
+[connection signal="body_entered" from="UpGravity3" to="Player" method="_on_UpGravity_body_entered"]
+[connection signal="body_exited" from="UpGravity3" to="Player" method="_on_UpGravity_body_exited"]
