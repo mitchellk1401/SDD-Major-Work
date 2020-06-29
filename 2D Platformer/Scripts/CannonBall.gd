@@ -1,3 +1,4 @@
+# Controls the instanciated object created by the cannon, ensures that the movement direction is correct based on parent orientation.
 extends KinematicBody2D
 
 var rotationCannon = 0

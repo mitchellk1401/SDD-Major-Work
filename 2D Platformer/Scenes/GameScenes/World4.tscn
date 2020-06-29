@@ -79,7 +79,7 @@ position = Vector2( -720, -590 )
 [node name="Portal" parent="." instance=ExtResource( 9 )]
 position = Vector2( 90, -260 )
 scale = Vector2( 4, 4 )
-world_scene = "res://Scenes/GameScenes/GameFinished.tscn"
+world_scene = "res://Scenes/GameScenes/World5.tscn"
 
 [node name="GuideArrow" parent="." instance=ExtResource( 7 )]
 position = Vector2( 1680, 540 )

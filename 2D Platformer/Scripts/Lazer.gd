@@ -1,3 +1,4 @@
+# Controls the lazer
 extends Node2D
 
 var lazerOn = true

@@ -1,3 +1,4 @@
+# Contols start menu functionality
 extends Control
 
 var timerRunning

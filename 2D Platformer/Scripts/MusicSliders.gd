@@ -1,3 +1,4 @@
+# Controls the music sliders on the mainMenu and in the pause menu
 extends Control
 
 func _ready(): # Called when scene/ script is initated

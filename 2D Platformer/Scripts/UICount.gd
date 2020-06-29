@@ -1,8 +1,5 @@
-extends RichTextLabel
-
-#
 # Controls the timer the player sees, Values supplied from counter.gd which is initialised onLoad
-#
+extends RichTextLabel
 
 onready var count = get_node("/root/Counter")
 

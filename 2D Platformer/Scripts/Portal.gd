@@ -1,3 +1,4 @@
+# Controls transitions between scenes
 extends Area2D
 
 # Export: Makes a variable which can be edited/ placed in the inspector for the scene

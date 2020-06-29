@@ -1,3 +1,4 @@
+# Controls the pause menu which is attatched too the player's KinematicBody
 extends Control
 
 onready var saveAndLoad = get_node("/root/SaveAndLoad")

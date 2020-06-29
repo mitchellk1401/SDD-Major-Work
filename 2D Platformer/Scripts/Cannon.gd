@@ -1,3 +1,4 @@
+# Controls the cannon and the instanciation of the cannonball
 extends Node2D
 
 var frame = 0

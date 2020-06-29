@@ -1,3 +1,4 @@
+# Controls the moving platforms
 extends KinematicBody2D
 var collide = null
 var direction = Vector2()

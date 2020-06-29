@@ -1,6 +1,7 @@
+# All the saving functionality
 extends Node
 
-var savePath = "user://settings.cfg"
+var savePath = "user://settings.cfg" #In local system C:\Users\<MainUser>\AppData\Roaming\Godot\app_userdata\2D Platformer
 var config = ConfigFile.new()
 var loadResponse = config.load(savePath)
 
@@ -49,7 +50,5 @@ func newTimes():
 	gameTime.time = 0
 	gameTime.mins = 0
 	
-#func newGame():
-#	saveGameValue("Level", "Upto", "res://Scenes/GameScenes/Tutorial.tscn")
 
 

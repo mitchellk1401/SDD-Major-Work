@@ -1,3 +1,4 @@
+# Controls the in-game time the player has been playing
 extends RichTextLabel
 
 var time = 0

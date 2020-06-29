@@ -1,3 +1,4 @@
+# Controls the rotation of the spinningPlatforms kinematicBody
 extends KinematicBody2D
 
 var rotationSpeed = 1.5
