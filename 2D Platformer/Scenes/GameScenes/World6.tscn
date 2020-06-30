@@ -63,7 +63,7 @@ scale = Vector2( 12, 6 )
 
 [node name="Portal" parent="." instance=ExtResource( 9 )]
 position = Vector2( 4760, -240 )
-world_scene = "res://Scenes/GameScenes/GameFinished.tscn"
+world_scene = "res://Scenes/GameScenes/World7.tscn"
 [connection signal="body_entered" from="UpGravity" to="Player" method="_on_UpGravity_body_entered"]
 [connection signal="body_exited" from="UpGravity" to="Player" method="_on_UpGravity_body_exited"]
 [connection signal="body_entered" from="UpGravity2" to="Player" method="_on_UpGravity_body_entered"]

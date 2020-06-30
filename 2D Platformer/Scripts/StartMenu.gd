@@ -43,16 +43,19 @@ func _on_ResumeGameButton_pressed():
 	
 	pass # Replace with function body.
 	
-	
+func _on_CheckBox_pressed():
+	OS.window_fullscreen = !OS.window_fullscreen
+	pass 
+
+
+#Game Finished Buttons	
 func _on_QuitGameButton2_pressed():
 	SaveAndLoad.saveCurrentGameVolumes()
 	get_tree().quit()
 	pass 
 
 
-func _on_CheckBox_pressed():
-	OS.window_fullscreen = !OS.window_fullscreen
-	pass 
-
-
-
+func _on_ReturnToMenu_pressed():
+	SaveAndLoad.saveCurrentGameVolumes()
+	get_tree().change_scene("res://Scenes/GameScenes/StartMenu.tscn")
+	pass # Replace with function body.
