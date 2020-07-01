@@ -4,7 +4,7 @@
 [ext_resource path="res://Theme/Theme.tres" type="Theme" id=2]
 [ext_resource path="res://Fonts/28 Days Later.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://Scenes/ObjectScenes/Fog.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Sound/Music/the_field_of_dreams.ogg" type="AudioStream" id=5]
+[ext_resource path="res://Sound/Music/MenuMusic.ogg" type="AudioStream" id=5]
 [ext_resource path="res://Scenes/ObjectScenes/MusicSliders.tscn" type="PackedScene" id=6]
 
 [sub_resource type="DynamicFont" id=1]
@@ -26,7 +26,8 @@ __meta__ = {
 pause_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 27.0
+margin_left = 30.0
+margin_right = 3.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -79,6 +80,7 @@ position = Vector2( 330, 160 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
+volume_db = -11.106
 autoplay = true
 bus = "Music"
 

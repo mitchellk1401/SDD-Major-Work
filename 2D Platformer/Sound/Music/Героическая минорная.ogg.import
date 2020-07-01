@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Героическая минорная.ogg-2f1a139a39db3a8f3092d8b8fe1ebcab.oggstr"
+
+[deps]
+
+source_file="res://Sound/Music/Героическая минорная.ogg"
+dest_files=[ "res://.import/Героическая минорная.ogg-2f1a139a39db3a8f3092d8b8fe1ebcab.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
