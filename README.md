@@ -1,6 +1,4 @@
 # SDD-Major-Work
 
-Download compiled project from mitchellk1401.github.io 
-
-
+Compile Major work through the godot editor or download compiled project from www.mitchellk.github.io
 
