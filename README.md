@@ -1,4 +1,4 @@
 # SDD-Major-Work
 
-Compile Major work through the godot editor or download compiled project from www.mitchellk.github.io
+Project files for my year 12 major work, made in godot
 
